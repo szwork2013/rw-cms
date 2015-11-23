@@ -1,0 +1,279 @@
+//nav
+nav {
+  color: $mainFontColor;
+
+  a {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: inline-block;
+  }
+}
+
+//area
+.area {
+  padding-top: 50px;
+  padding-bottom: 20px;
+
+  .area-content{
+    .description {
+      @include outer-container($media-ll)
+    }
+  }
+}
+
+.slide-header {
+  @include page-header("../images/static-header.jpg","../images/head-img.png")
+}
+
+//static header
+.static-header {
+  @include main-header;
+
+  .title {
+    @include center;
+    text-align: center;
+  }
+
+  @media (min-width:$media-sm) {
+    display: none;
+  }
+}
+
+.mid-banner {
+  background-color: #000;
+  color: $mainFontColor;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .title-en {
+    display: none;
+    margin-top: 10px;
+    @media (min-width:$media-sm) {
+      display: block;
+    }
+  }
+}
+
+//area title
+.area-title {
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+
+  h3 {
+    font-weight: normal !important;
+  }
+
+  @mixin bracket-style {
+    position: absolute;
+    display: block;
+    font-size: 40px;
+    line-height: normal;
+    @include ver-center;
+    @include transform(translateY(-55%));
+  }
+
+  &:before {
+    content: "[";
+    left: 0;
+    @include bracket-style;
+  }
+
+  &:after {
+    content: "]";
+    right: 0;
+    @include bracket-style;
+  }
+}
+
+//card
+.card {
+  margin-bottom: 20px;
+}
+
+.card {
+  display: block;
+  background-color: #fff;
+
+  // min-width: 300px;
+  height: 300px;
+  border: 2px outset #c7c5c5;
+  padding: 5px;
+  padding-bottom: 0;
+  text-align: center;
+
+  .content-wrap {
+    color: #fff;
+    position: relative;
+    height: 200px;
+    background-color: #1a8386;
+    margin: 0 auto;
+    padding-top: 65px;
+    margin-bottom: 20px;
+  }
+
+  .card-description {
+    color: #000;
+    font-weight: bold;
+
+    p+p {
+      margin: 5px;
+    }
+  }
+}
+
+//area 1
+.area-1,
+.area-3 {
+  background-color: $mainBgc;
+  color: $mainFontColor;
+
+}
+
+
+
+//area 2
+.area-2 {
+  .sub-nav {
+    display: none;
+  }
+
+  .imgcard {
+    margin-bottom: 10px;
+  }
+}
+
+.imgcard {
+  height: 200px;
+  overflow: hidden;
+  @include background(url("../images/test-img.png"));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+//area 3
+.area-3 {
+  .content-wrap {
+    @include background(url("../images/test-img.png"));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+//area 4
+.area-4 {
+  .des-img {
+    display: none;
+  }
+
+  .description {
+    @include outer-container($media-ll);
+    margin-top: 50px;
+    @include clearfix;
+
+    p {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .en {
+      display: none;
+      margin-top: 10px;
+    }
+  }
+  @media (min-width:$media-md) {
+    .des-img{
+      display: block;
+      float: right;
+      width: 50%;
+      img{
+        @include transform(translateY(10%));
+        width: 100%;
+        height: auto;
+      }
+    }
+    .des-content{
+      float: left;
+      width:50%;
+      margin-top: 30px;
+    }
+    .en {
+      display: block !important;
+    }
+  }
+}
+
+//area 5
+.area-5 {
+  background-color: $mainBgc;
+  color: $mainFontColor;
+
+  .description {
+    @include outer-container($media-ll);
+
+    .en {
+      display: none;
+    }
+
+    .cn {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  }
+
+  .des-img {
+    display: none;
+  }
+
+  @media (min-width:$media-md) {
+    .area-content{
+      position: relative;
+      height: 300px;
+      // margin-top:-20px;
+    }
+    .description{
+      width: 700px;
+      @include center;
+    }
+    .des-img{
+      display: block;
+      float: left;
+      width: 160px;
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+    .des-content{
+      float: left;
+      width:500px;
+      padding-top: 15px;
+      .area-title{
+        margin: 0;
+        margin-bottom: 100px;
+      }
+    }
+    .cn{
+      font-size: 20px;
+    }
+    .en {
+      display: block !important;
+    }
+  }
+}
+
+.area-2,.area-4{
+  background-color: rgb(251, 251, 251);
+}

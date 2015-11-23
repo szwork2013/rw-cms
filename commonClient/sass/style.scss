@@ -1,0 +1,37 @@
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+// @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "~normalize.css";
+@import "~node-bourbon/node_modules/bourbon/app/assets/stylesheets/_bourbon.scss";
+@import "~node-neat/node_modules/bourbon-neat/app/assets/stylesheets/_neat.scss";
+
+//var------------------------------
+$defaultLinkColor: #fff;
+$mainColor: #fff;
+$mainBgc: #0075c4;
+$mainFontColor: #fff;
+$subFontColor: #000;
+$subBgc: #222;
+$media-xs: 480px;
+$media-sm: 768px;
+$media-md: 992px;
+$media-lg: 1200px;
+$media-ll: 1440px;
+$header-height: 60px;
+$normal-font-size: 14px;
+$small-font-size: 12px;
+
+//---------------------------------
+@import "./mixin";
+@import "./init";
+@import "./header";
+@import "./grid";
+@import "./footer";
+//----------------------------------
+
+@import "./index";
+@import "./news";
+@import "./about";
+@import "./article"
+
+//-----------------------------------

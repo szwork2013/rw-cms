@@ -1,0 +1,46 @@
+.about-header{
+  @include page-header("../images/hnbv.jpg","../images/head-img.png")
+
+  @media (min-width: $media-lg){
+    .wrap{
+      display: none;
+    }
+  }
+}
+.about.area{
+  background-color:$mainColor;
+  color: $subFontColor;
+
+  p{
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+}
+
+.about.area-1{
+  p{
+    text-indent: 30px;
+  }
+}
+.about.area-2{
+  p{
+    text-align: center;
+    font-size: $small-font-size;
+    margin-bottom: 15px;
+  }
+  p.title{
+    font-weight: bold;
+    font-size: $normal-font-size;
+    margin-bottom: -10px;
+  }
+
+  background-color: #f5f5f5;
+}
+.about.area-3{
+  img{
+    width: 100%;
+  }
+  @media (max-width:$media-md){
+    display: none;
+  }
+}

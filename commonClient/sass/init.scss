@@ -1,0 +1,49 @@
+//init
+body,
+html {
+  height: 100%;
+}
+
+* {
+  font-family: '微软雅黑',sans-serif;
+}
+
+*:focus {
+  outline: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p {
+  font-size: $normal-font-size;
+}
+
+a {
+  text-decoration: none;
+
+  &:visited,
+  &:link {
+    color: $defaultLinkColor;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+//custom css
+button {
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+}

@@ -1,0 +1,31 @@
+//grid
+.area-grid,.area-content {
+  margin-top: 20px;
+  @include main-content-margin;
+
+
+}
+
+.row {
+  @include outer-container($media-ll);
+}
+
+.col {
+  @include span-columns(12);
+
+  @media (min-width:$media-sm) and (max-width:$media-md) {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+
+  @media (min-width:$media-md) and (max-width:$media-lg) {
+    // @include omega-reset(2n);
+    @include span-columns(4);
+    @include omega(3n);
+  }
+
+  @media (min-width:$media-lg) {
+    @include span-columns(3);
+    @include omega(4n);
+  }
+}

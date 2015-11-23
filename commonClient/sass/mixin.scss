@@ -1,0 +1,109 @@
+//mixin
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) {
+    margin-right: flex-gutter();
+  }
+
+  &:nth-child(#{$nth}+1) {
+    clear: none;
+  }
+}
+
+@mixin ver-center {
+  position: absolute;
+  top: 50%;
+  @include transform(translateY(-50%));
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%,-50%));
+}
+
+@mixin custom-font1 {
+  // text-shadow: #393939 2px 0 0,#393939 0 3px 0,#393939 -2px 0 0,#393939 0 -2px 0;
+  text-shadow: #000 1px 1px 10px,#000 0px 0px 10px;
+  color: #fff;
+}
+
+@mixin main-content-margin {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  @media (min-width:$media-xs) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@mixin main-header{
+  position: relative;
+  height: 50%;
+  background-image: url(/app/dist/images/static-header.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  .title{
+    @include custom-font1;
+    display: block;
+    line-height: 50px;
+    min-width:350px;
+  }
+}
+
+@mixin page-header($bgcUrl,$headImgUrl){
+  position: relative;
+  height: 60%;
+  @include background(url($bgcUrl));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+
+  .wrap {
+    @include center;
+    @include clearfix;
+    height: 100%;
+    width: 100%;
+    max-width:$media-ll;
+  }
+
+  .title {
+    @include ver-center;
+    left: 10%;
+    display: block;
+    line-height: 50px;
+    min-width:350px;
+    text-shadow: #000 1px 1px 10px,#000 0px 0px 10px;
+    color: #fff;
+  }
+
+  .content-img {
+    @include ver-center;
+    right: 10%;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width:$media-lg) {
+    @include background(url($headImgUrl));
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    .wrap{
+      background-color: rgba(50, 36, 23, 0.5);
+    }
+    .title {
+      @include center;
+      text-align: center;
+      font-size: 12px;
+    }
+    .content-img{
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+extends ./layouts/main-layout.jade
+
+block content
+  include ./includes/slide-header.jade
+  include ./includes/mid-banner.jade
+  
+  // area 1:服务与方案
+  section.area.area-1
+    // area title
+    .area-title
+      h3 Services and solutions
+      h3 服务与方案
+    // area grid
+    .area-grid
+      .row
+        -for(i=0;i<6;i++)
+          .col
+            a.card
+              .content-wrap
+                h2.title-main 电子政务
+                p.title-sub The electronic government affairs
+              .card-description
+                p 电子政务
+                p 电子政务将政务工作更有效、更精简
+  // area 2:项目案例
+  section.area.area-2
+    // area title
+    .area-title
+      h3
+        | Project case
+        h3
+          | 项目案例
+    // nav
+    ul.sub-nav
+      li
+        a(href='') 全部
+      li
+        a(href='') 海关项目
+      li
+        a(href='') 财务软件
+      li
+        a(href='') 网站制作
+    // area grid
+    .area-grid
+      .row
+        -for(var i=0;i<6;i++)
+          .col
+            .imgcard
+    // line bar
+    .line-bar
+  // area 3:瑞高资讯
+  section.area.area-3
+    // area title
+    .area-title
+      h3 Cutting-edge news
+      h3 瑞高资讯
+    // area grid
+    .area-grid
+      .row
+        -for(var i=0;i<6;i++)
+          .col
+            a.card
+              .content-wrap
+              .card-description
+                p 新闻标题
+                  p 新闻简介
+
+  // area 4:关于瑞高
+  section.area.area-4
+    // area title
+    .area-title
+      h3 #{homeData.about.title.en}
+      h3 #{homeData.about.title.cn}
+    // area content
+    .area-content
+      .description
+        .des-content
+          //- h4 天津瑞高信息技术有限公司是一家以软件技术为核心，设计、开发、系统集成信息技术服务商。
+          //- p.en Tianjin high information technology co., LTD is a software Technology as the core, the design, development, system integration, information technology service provider.
+          //- p 愿景/Vision：以软件技术为支点，为社会进步与繁荣做出杰出贡献
+          //- p 目标/Goals：为客户创造价值，为员工搭建舞台
+          //- p 核心价值观/Core Values：有利于社会，有利于企业，有利于员工
+          //- p 核心价值观是扎根于我们内心深处的核心信 念，我我们走到今天的内在动力
+          //- p 更要我们面向 未来的共同承诺，极致的为客户提供有效的服务
+          !{homeData.about.content}
+        .des-img
+          img(src=homeData.about.imgUrl alt='')
+  // area 5:联系我们
+  section.area.area-5
+    // area content
+    .area-content
+      .description
+        .des-content
+          // area title
+          .area-title
+            h2 #{homeData.contect.title.en}
+            h2 #{homeData.contect.title.cn}
+          //- p.cn 天津瑞高信息技术有限公司
+          //- p.en Tianjin reegle information technology co., LTD
+          //- p.cn 联系电话：15722286393
+          //- p.en Contact phone number: 15722286393
+          //- p.cn 邮箱地址：reegle@163.com
+          //- p.en Email address: reegle@163.com
+          //- p.cn 公司地址：西青区大学城内创新大楼c504
+          //- p.en Company address: building c504 xiqing district university city innovation
+          
+          !{homeData.contect.content}
+        .des-img
+          img(src=homeData.contect.imgUrl, alt='')

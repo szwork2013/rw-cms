@@ -1,0 +1,11 @@
+<section layout="row">
+  <!--左侧分类导航-->
+  <md-sidenav class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-button ui-sref="category.articles({id:category._id})" ng-repeat="category in categorys">
+      {{category.name}}
+    </md-button>
+  </md-sidenav>
+
+  <!--右侧文章列表-->
+  <div ui-view="submain" flex></div>
+</section>

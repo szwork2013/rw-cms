@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;', name='viewport')
+    title #{homeData.title}
+  body
+    block main
+    script(src='http://localhost:8080/webpack-dev-server.js')
+    script(type='text/javascript', src='commonClient.js')

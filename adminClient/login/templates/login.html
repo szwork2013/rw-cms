@@ -1,0 +1,27 @@
+<md-content layout-padding layout-align="center center" layout="column">
+  <div class="own-login-part">
+    <form novalidate name="loginForm">
+      <md-input-container>
+        <label>User Name</label>
+        <input name="name" required ng-model="author.name">
+
+        <div ng-messages="loginForm.name.$error" ng-show="loginForm.name.$touched">
+          <div ng-message="required">This is required</div>
+        </div>
+
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input name="password" required ng-model="author.password" type="password">
+
+        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
+          <div ng-message="required">This is required</div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+        <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid" ng-click="login()">Login</md-button>
+        <md-button class="md-raised" ui-sref="register">Register</md-button>
+      </div>
+    </form>
+  </div>
+</md-content>

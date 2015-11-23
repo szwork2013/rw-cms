@@ -1,0 +1,97 @@
+//header
+header {
+  background-color: $subBgc;
+  color: $mainFontColor;
+
+  .head-wrap {
+    max-width: $media-ll;
+    @include clearfix;
+    margin: 0 auto;
+  }
+  .logo-wrap {
+    height: $header-height;
+
+    .head-img {
+      float: left;
+      margin-left: 20px;
+      height: 100%;
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    //burger menu
+    .burger-btn {
+      float: right;
+      height: 100%;
+      padding: 0 10px;
+      border: 0;
+
+      span {
+        background-color: $mainColor;
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+      }
+
+      span+span {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  nav {
+    display: none;
+
+    li {
+      border-bottom: #fff solid 1px;
+      display: block;
+      font-size: 20px;
+      line-height: 2;
+
+      a {
+        padding: 10px 0 10px 20px;
+      }
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+
+  @media (min-width:$media-sm) {
+    @include clearfix;
+    .burger-btn {
+      display: none;
+    }
+
+    .logo-wrap {
+      display: block;
+      float: left;
+      margin-left: 5%;
+    }
+    nav {
+      float: right;
+      height: $header-height;
+      margin-right: 5%;
+      display:block !important;
+      padding-top: 15px;
+      ul{
+        height: 100%;
+      }
+      li {
+        height: 100%;
+        display: inline-block;
+        border-bottom: none;
+        font-size: $normal-font-size;
+        a {
+          height: 100%;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

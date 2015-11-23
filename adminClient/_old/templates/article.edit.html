@@ -1,0 +1,61 @@
+<div layout="row">
+  <!--编辑内容-->
+  <div layout="column" flex>
+    <!--title-->
+    <md-input-container>
+      <label>Title</label>
+      <input ng-model="article.title">
+    </md-input-container>
+    <!--content-->
+    <div layout="row">
+      <textarea ng-model="article.content" flex></textarea>
+
+      <p sd-model-to-html="article.content" flex></p>
+    </div>
+  </div>
+  <!--右侧配置项-->
+  <md-sidenav class="md-sidenav-right" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" flex>
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Setting</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+
+      <!--<md-input-container>-->
+      <!--<label>Category</label>-->
+      <!--<input ng-model="article.category">-->
+      <!--</md-input-container>-->
+
+      <md-input-container>
+        <label>Slug</label>
+        <input ng-model="article.slug">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="article.description" ></textarea>
+      </md-input-container>
+
+      <md-autocomplete md-input-name="autocompleteField"
+                       md-selected-item="selectedItem"
+                       md-search-text="searchText"
+                       md-items="item in querySearch(searchText)"
+                       md-item-text="item.name"
+                       md-floating-label="Category">
+        <md-item-template>
+          <span md-highlight-text="searchText">{{item.name}}</span>
+        </md-item-template>
+      </md-autocomplete>
+
+
+      <md-chips ng-model="article.tags"
+                placeholder="Enter a tag"
+                delete-button-label="Remove Tag"
+                delete-hint="Press delete to remove tag"
+                secondary-placeholder="+Tag">
+      </md-chips>
+
+      <md-button class="md-raised" ng-click="create()">Create</md-button>
+      <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+    </md-content>
+  </md-sidenav>
+</div>

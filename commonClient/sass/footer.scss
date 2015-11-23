@@ -1,0 +1,21 @@
+//footer
+footer {
+  color: $mainFontColor;
+  background-color: $subBgc;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  nav {
+    display: none;
+    font-size: 14px;
+
+    @media (min-width: $media-sm){
+      display: block;
+      padding-bottom: 10px;
+      li+li{
+        padding-left: 10px;  
+      }
+    }
+  }
+}

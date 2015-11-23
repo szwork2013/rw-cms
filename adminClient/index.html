@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="admin">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+
+  <!--<script type="text/javascript" src="./dist/client/bundle.js"></script>-->
+  <!-- 测试用-->
+  <script src="http://localhost:8080/webpack-dev-server.js"></script>
+  <script type="text/javascript" src="adminClient.js"></script>
+</head>
+
+<body ng-controller="ctrl">
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <span ui-sref="home">Admin</span>
+    <!-- fill up the space between left and right area -->
+    <span flex></span>
+    <md-button ui-sref="login" >Login</md-button>
+    <md-button ng-click="logout()">Logout</md-button>
+    <md-button ui-sref="category">分类</md-button>
+    <md-button class="md-fab md-primary" ui-sref="article.create">
+      <md-icon md-svg-src="../fonts/icons/ic_add_24px.svg" aria-label="add"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<div ui-view="main"></div>
+</body>
+
+</html>

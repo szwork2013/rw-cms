@@ -1,0 +1,13 @@
+.category-articles md-backdrop.md-sidenav-backdrop{
+  z-index:60;
+  position: fixed;
+}
+
+.category-articles md-tabs:not(.md-no-tab-content):not(.md-dynamic-height){
+  min-height: 0;
+}
+
+.category-articles md-sidenav{
+  width:60%;
+  max-width:none;
+}
