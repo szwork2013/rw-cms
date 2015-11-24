@@ -1,4 +1,5 @@
 // mid banner
-section.mid-banner
-  h4.title-cn #{homeData.midBanner.cn}
-    p.title-en #{homeData.midBanner.en}
+mixin mid-banner(midBanner)
+  section.mid-banner
+    h4.title-cn #{midBanner.cn}
+      p.title-en #{midBanner.en}

@@ -7,9 +7,26 @@ var ObjectId = Schema.ObjectId
 //解决方案
 //新闻
 var CategorySchema = new Schema({
-  name:{
-    type:String
+  name: {
+    type: String
+  },
+  nameEn: {
+    type: String
+  },
+  slug: {
+    type: String,
+  },
+  description: {
+    type: String
+  },
+  createDate: {
+    type: Date,
+    default: Date.now
+  },
+  updateDate: {
+    type: Date,
+    default: Date.now
   }
 })
 
-module.exports = mongoose.model('Category',CategorySchema)
+module.exports = mongoose.model('Category', CategorySchema)

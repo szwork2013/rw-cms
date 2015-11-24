@@ -3,6 +3,25 @@ var Schema = mongoose.Schema
 
 //主页配置
 var AboutSchema = new Schema({
+  slideHeader: {
+    description: {
+      type: String
+    },
+    bigImgUrl: {
+      type: String
+    },
+    smallImgUrl: {
+      type: String
+    },
+  },
+  midBanner: {
+    cn: {
+      type: String
+    },
+    en: {
+      type: String
+    }
+  },
   area1: {
     title: {
       cn: {

@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "client-start": "webpack-dev-server --content-base-target http://localhost:3000 --hot --inline ",
-    "server-start": "node --debug ./server/app.js",
+    "server-debug": "node --debug ./server/app.js",
+    "server-run": "node ./server/app.js",
     "node-debug": "node-debug --web-port 8090 --save-live-edit true  ./server/app.js"
   },
   "dependencies": {
+    "co": "^4.6.0",
     "font-awesome": "^4.4.0",
     "jade": "^1.11.0",
     "koa": "^1.1.2",

@@ -4,8 +4,10 @@ block content
   include ./includes/slide-header.jade
   include ./includes/mid-banner.jade
   
+  +mid-banner(homeData.midBanner)
+  
   // area 1:服务与方案
-  section.area.area-1
+  section.area.area-1#area-1
     // area title
     .area-title
       h3 Services and solutions
@@ -23,7 +25,7 @@ block content
                 p 电子政务
                 p 电子政务将政务工作更有效、更精简
   // area 2:项目案例
-  section.area.area-2
+  section.area.area-2#area-2
     // area title
     .area-title
       h3
@@ -49,7 +51,7 @@ block content
     // line bar
     .line-bar
   // area 3:瑞高资讯
-  section.area.area-3
+  section.area.area-3#area-3
     // area title
     .area-title
       h3 Cutting-edge news
@@ -66,7 +68,7 @@ block content
                   p 新闻简介
 
   // area 4:关于瑞高
-  section.area.area-4
+  section.area.area-4#area-4
     // area title
     .area-title
       h3 #{homeData.about.title.en}
@@ -86,7 +88,7 @@ block content
         .des-img
           img(src=homeData.about.imgUrl alt='')
   // area 5:联系我们
-  section.area.area-5
+  section.area.area-5#area-5
     // area content
     .area-content
       .description

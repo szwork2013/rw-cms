@@ -3,6 +3,7 @@ extends ./layouts/main-layout.jade
 block content
   include ./includes/slide-header.jade
   include ./includes/mid-banner.jade
+  +mid-banner(articleData.minBanner)
 
   .article.area.area-1
     .area-title

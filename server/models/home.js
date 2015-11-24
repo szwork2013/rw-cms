@@ -3,9 +3,6 @@ var Schema = mongoose.Schema
 
 //主页配置
 var HomeSchema = new Schema({
-  title: {
-    type: String
-  },
   slideHeader: {
     description: {
       type: String
@@ -57,9 +54,6 @@ var HomeSchema = new Schema({
       type: String
     }
   },
-  ICP: {
-    type: String
-  }
 })
 
 module.exports = mongoose.model('Home', HomeSchema)

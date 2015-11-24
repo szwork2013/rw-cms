@@ -49,11 +49,14 @@ var ArticleSchema = new Schema({
   },
   //类别
   category: {
-    type: ObjectId
+    type: [ObjectId]
   },
   //关联文章
   relationArticle: {
     type: [ObjectId]
+  },
+  background:{
+    type:String
   },
   createDate: {
     type: Date,

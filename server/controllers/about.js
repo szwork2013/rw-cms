@@ -7,16 +7,9 @@ var about = base.init(About)
 
 about.common = {
   get: function*(next) {
-    var data = yield [About.find().sort({
-        _id: -1
-      }).exec(),
-      Home.find().sort({
-        _id: -1
-      }).exec()
-    ]
     yield this.render('about', {
-      aboutData: data[0][0],
-      homeData: data[1][0]
+      layoutData: this.state.layoutData,
+      aboutData: this.state.docs[0]
     })
   },
 }

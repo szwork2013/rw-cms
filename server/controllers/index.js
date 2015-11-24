@@ -5,6 +5,7 @@ var category = require('./category')
 var login = require('./login')
 var home = require('./home')
 var about = require('./about')
+var layout = require('./layout')
 var send = require('koa-send')
 var config = require('../config')
 
@@ -86,8 +87,8 @@ adminRouter.post('/upload', function*(next) {
 
 
 //公开页面--------------------------------------------
-router.get('/', home.getAll, home.common.get)
-router.get('/about', about.common.get)
+router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
+router.get('/about', layout.getAll,layout.common.get, about.getAll, about.common.get)
 
 router.use('', adminRouter.routes())
 

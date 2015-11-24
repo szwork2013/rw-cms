@@ -3,12 +3,15 @@ var Home = models.Home
 var base = require('./base')
 
 
-var home =  base.init(Home)
+var home = base.init(Home)
 
 
 home.common = {
-  get: function*(next) {
-    yield this.render('index', {homeData: this.state.docs[0]})
+  render: function*(next) {
+    yield this.render('index', {
+      layoutData: this.state.layoutData,
+      homeData: this.state.docs[0]
+    })
   },
 }
 module.exports = home

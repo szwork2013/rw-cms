@@ -5,13 +5,11 @@ block content
   section.about-header
     .wrap
       .title
-        //- h1 我们做的不只是程序 
-        //- h1 是提供更有价值的思想和方案
-        //- h1 让每天的工作变得更加美好，
-        //- h1 有活力，充满激情。
-        !{homeData.slideHeader.description}
+        !{aboutData.slideHeader.description}
   
   include ./includes/mid-banner.jade
+  
+  +mid-banner(aboutData.midBanner)
   
   section.about.area.area-1
     // area title

@@ -3,5 +3,6 @@ module.exports = {
   Category:require('./category'),
   Author:require('./author'),
   Home:require('./home'),
-  About:require('./about')
+  About:require('./about'),
+  Layout:require('./layout')
 }
