@@ -30,4 +30,22 @@ category.admin.getCategoryArticles = function*(next) {
   this.body = this.state.docs
 }
 
+category.common = {
+  render: function*(next) {
+    var categoryResult = yield Category.find({
+      slug: this.params.slug
+    }).exec()
+    this.state.articles = yield Article.find({
+      category: categoryResult[0]._id
+    }).sort({
+      _id: -1
+    }).exec()
+    var template = this.params.slug === 'news' ? 'news' : 'services'
+    yield this.render(template, {
+      layoutData: this.state.layoutData,
+      articles: this.state.articles
+    })
+  }
+}
+
 module.exports = category

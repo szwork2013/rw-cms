@@ -1,7 +1,8 @@
 // slide header @fullSize
-section.slide-header
-  .wrap
-    .title
-      !{homeData.slideHeader.description}
-    .content-img
-      img(src=homeData.slideHeader.smallImgUrl, alt='')
+mixin slide-header(slideHeader)
+  section.slide-header
+    .wrap
+      .title
+        !{slideHeader.description}
+      .content-img
+        img(src=slideHeader.smallImgUrl, alt='')

@@ -6,7 +6,7 @@ var base = require('./base')
 var about = base.init(About)
 
 about.common = {
-  get: function*(next) {
+  render: function*(next) {
     yield this.render('about', {
       layoutData: this.state.layoutData,
       aboutData: this.state.docs[0]

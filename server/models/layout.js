@@ -13,9 +13,28 @@ var LayoutSchema = new Schema({
   ICP: {
     type: String
   },
-  nav:[{
-    type:ObjectId
-  }]
+  nav: [{
+    type: ObjectId
+  }],
+  slideHeader: {
+    description: {
+      type: String
+    },
+    bigImgUrl: {
+      type: String
+    },
+    smallImgUrl: {
+      type: String
+    },
+  },
+  midBanner: {
+    cn: {
+      type: String
+    },
+    en: {
+      type: String
+    }
+  }
 })
 
 module.exports = mongoose.model('Layout', LayoutSchema)
