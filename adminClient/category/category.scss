@@ -1,13 +1,23 @@
-.category-articles md-backdrop.md-sidenav-backdrop{
-  z-index:60;
-  position: fixed;
+.self-category-nav {
+  border-right: #f5f7f8 1px solid;
+  height: 100%;
+
+  .md-button {
+    width: 100%;
+    margin: 0 !important;
+  }
 }
 
-.category-articles md-tabs:not(.md-no-tab-content):not(.md-dynamic-height){
-  min-height: 0;
+.self-preview-article {
+  width: 700px !important;
+  max-width: none !important;
+  min-width: none !important;
 }
 
-.category-articles md-sidenav{
-  width:60%;
-  max-width:none;
+.self-page-navigation {
+  .md-button {
+    width: 30px;
+    max-width: 30px;
+    min-width: 30px;
+  }
 }

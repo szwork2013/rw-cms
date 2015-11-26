@@ -1,44 +1,44 @@
-<div class="category-articles">
+<div class="self-category-articles">
   <md-content flex>
-
 
     <!--<ul>-->
     <!--<li ng-repeat="i in range(pageNum) track by $index"><div ng-click="getData($index+1)">{{$index+1}}</div></li>-->
     <!--</ul>-->
     <md-list>
-      <md-list-item ng-repeat="article in articles" ng-click="preview(article);$event.stopPropagation()">
+      <md-subheader>文章</md-subheader>
+      <md-divider></md-divider>
+      <md-list-item layout-padding ng-click="preview(article);$event.stopPropagation()" ng-repeat="article in articles">
         <p>{{article.title}}</p>
-        <md-icon md-svg-src="../fonts/icons/ic_edit_24px.svg" aria-label="edit"
-                 ui-sref="article.edit({id:article._id})"></md-icon>
-        <md-icon md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(article);$event.stopPropagation()" aria-label="delete"></md-icon>
+        <md-button class="md-icon-button  md-primary">
+          <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg" ui-sref="article.edit({id:article._id})"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button md-primary">
+          <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(article);$event.stopPropagation()"></md-icon>
+        </md-button>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
-    <md-tabs md-align-tabs="top" class="own-tabs">
-      <md-tab ng-repeat="i in range(pageNum) track by $index"
-              label="{{$index+1}}"
-              ng-click="getData($index+1)">
-      </md-tab>
-    </md-tabs>
+    <div class="self-page-navigation-wrapper">
+      <div class="self-page-navigation" layout-align="center center" layout="row">
+        <md-button ng-click="getData($index+1)" ng-repeat="i in range(pageNum) track by $index">{{$index+1}}</md-button>
+      </div>
+    </div>
   </md-content>
 
-  <md-sidenav class="md-sidenav-right md-whiteframe-z2 right-article" md-component-id="right">
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2 self-preview-article" md-component-id="right">
     <md-toolbar class="md-theme-light">
       <div class="md-toolbar-tools">
-        <h1 class="md-toolbar-tools">Preview</h1>
-        <md-icon md-svg-src="../fonts/icons/ic_edit_24px.svg" aria-label="edit"
-                 ui-sref="article.edit({id:previewArticle._id})"></md-icon>
-        <md-icon md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(previewArticle)" aria-label="delete"></md-icon>
+        <h1 class="md-toolbar-tools">预览</h1>
+        <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg" ui-sref="article.edit({id:previewArticle._id})"></md-icon>
+        <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(previewArticle)"></md-icon>
       </div>
     </md-toolbar>
     <md-content layout-padding>
       <h1>{{previewArticle.title}}</h1>
 
-
       <p>{{previewArticle.createDate | date:"yyyy-MM-dd 'at' h:mma"}}</p>
 
       <div ng-bind-html="deliberatelyTrustDangerousSnippet()"></div>
-
 
       <md-chips>
         <md-chip ng-repeat="tag in previewArticle.tags">{{tag}}</md-chip>

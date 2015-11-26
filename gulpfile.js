@@ -7,7 +7,7 @@ var WebpackDevServer = require('webpack-dev-server')
 var webpackConfig = require('./webpack.config.js')
 
 
-var dir = './client/'
+var dir = './adminClient/'
 
 gulp.task('html', function () {
   gulp.src(dir + '**/*.html')

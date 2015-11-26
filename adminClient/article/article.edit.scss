@@ -2,3 +2,38 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+
+.self-article-edit {
+  .self-publish-button {
+    height: 40px !important;
+    width: 30px !important;
+    min-width: 0;
+    margin: auto 10px;
+  }
+
+  .self-setting-button {
+    margin: auto 0 auto 20px !important;
+  }
+
+  .ta-scroll-window {
+    border: #f5f7f8 solid 1px;
+  }
+
+  text-angular textarea {
+    display: block;
+    width: 100%;
+    padding: 20px 0;
+  }
+}
+
+.self-article-setting {
+  max-width: 450px !important;
+  width: 450px !important;
+  min-width: 0 !important;
+
+  border-left: #f5f7f8 solid 1px;
+}
+
+md-backdrop {
+  background-color: transparent !important;
+}

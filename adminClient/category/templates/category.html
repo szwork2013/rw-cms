@@ -1,11 +1,16 @@
-<section layout="row">
+<section layout="row" style="height:100%">
   <!--左侧分类导航-->
-  <md-sidenav class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')">
-    <md-button ui-sref="category.articles({id:category._id})" ng-repeat="category in categorys">
-      {{category.name}}
-    </md-button>
-  </md-sidenav>
+  <md-list class="self-category-nav" flex="20">
+    <md-subheader class="md-no-sticky">分类</md-subheader>
+    <md-divider></md-divider>
+
+    <md-list-item ng-repeat="category in categorys">
+      <md-button ui-sref="category.articles({id:category._id})">
+        {{category.name}}
+      </md-button>
+    </md-list-item>
+  </md-list>
 
   <!--右侧文章列表-->
-  <div ui-view="submain" flex></div>
+  <div flex ui-view="submain"></div>
 </section>

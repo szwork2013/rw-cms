@@ -34,9 +34,9 @@ var articleData = {
 
 
 var mongoose = require('mongoose')
-var config = require('./config')
+var config = require('../config')
 var data = require('./mongoInitData')
-var models = require('./models')
+var models = require('../models')
 var Article = models.Article
 var Category = models.Category
 var co = require('co')
@@ -45,7 +45,8 @@ mongoose.connect(config.mongoStr)
 
 co(function*() {
   var cate = yield Category.find({name:'服务与方案'}).exec()
-  articleData.docs[0].category = cate._id
+  console.log(cate[0]._id)
+  articleData.docs[0].category = cate[0]._id
   yield Article.create(articleData.docs[0])
   console.log('finish')
 })

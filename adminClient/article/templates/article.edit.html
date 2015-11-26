@@ -1,120 +1,121 @@
-<div layout="row">
-  <!-- markdown-->
-  <!--&lt;!&ndash;编辑内容&ndash;&gt;-->
-  <!--<div layout="column" flex>-->
-  <!--&lt;!&ndash;title&ndash;&gt;-->
-  <!--<md-input-container>-->
-  <!--<label>Title</label>-->
-  <!--<input ng-model="article.title">-->
-  <!--</md-input-container>-->
-  <!--&lt;!&ndash;content&ndash;&gt;-->
-  <!--<div layout="row">-->
-  <!--<textarea ng-model="article.content" flex></textarea>-->
+<!-- markdown-->
+<!--&lt;!&ndash;编辑内容&ndash;&gt;-->
+<!--<div layout="column" flex>-->
+<!--&lt;!&ndash;title&ndash;&gt;-->
+<!--<md-input-container>-->
+<!--<label>Title</label>-->
+<!--<input ng-model="article.title">-->
+<!--</md-input-container>-->
+<!--&lt;!&ndash;content&ndash;&gt;-->
+<!--<div layout="row">-->
+<!--<textarea ng-model="article.content" flex></textarea>-->
 
-  <!--<p sd-model-to-html="article.content" flex></p>-->
-  <!--</div>-->
-  <!--</div>-->
+<!--<p sd-model-to-html="article.content" flex></p>-->
+<!--</div>-->
+<!--</div>-->
 
-  <!-- 富文本-->
-  <!--编辑内容-->
-  <div layout="column" flex>
-    <!--title-->
-    <md-input-container>
-      <label>Title</label>
+<!-- 富文本-->
+<!--编辑内容-->
+<div class="self-article-edit" flex layout-padding layout="column">
+  <!--title-->
+  <div layout="row">
+    <md-input-container flex="80">
+      <label>标题</label>
       <input ng-model="article.title">
     </md-input-container>
-    <!--content-->
-    <div layout="row">
-      <text-angular ng-model="article.content">
-      </text-angular>
-    </div>
-
-
-    <div>
-      <h4>Upload on file select</h4>
-      <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-        Select File</button>
-      <br>
-      <br> File:
-      <div style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
-        <span class="progress" ng-show="f.progress >= 0">
-          <div style="width:{{f.progress}}%"
-               ng-bind="f.progress + '%'"></div>
-      </span>
-      </div>
-
-      {{path}}
-      {{errorMsg}}
-    </div>
-
-
-    <!--关联文章-->
-    <md-divider></md-divider>
-    <md-subheader>Relation Article</md-subheader>
-    <div layout="row" flex>
-      <div ng-repeat="category in categorys" flex>
-        <md-subheader ng-click="openList(category)">{{category.name}}</md-subheader>
-        <md-list ng-show="category.showArticle">
-          <md-list-item ng-repeat="relationArticle in category.categoryArticles">
-            <md-checkbox
-                    ng-model="relationArticle.checked"
-                    ng-change = "changeRelationArticl(relationArticle)"
-                    ></md-checkbox>
-            <p>{{relationArticle.title}}</p>
-          </md-list-item>
-        </md-list>
-      </div>
-    </div>
-
+    <md-button class="self-setting-button md-raised md-icon-button" ng-click="toogleSetting()">
+      <md-icon md-svg-src="../fonts/icons/ic_settings_24px.svg"></md-icon>
+    </md-button>
+    <md-button class="md-raised self-publish-button md-primary" flex>
+      发布
+    </md-button>
   </div>
-  <!--右侧配置项-->
-  <md-sidenav class="md-sidenav-right" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" flex>
-    <md-toolbar class="md-theme-light">
-      <h1 class="md-toolbar-tools">Setting</h1>
-    </md-toolbar>
+  <!--content-->
+  <div layout="row">
+    <text-angular ng-model="article.content"></text-angular>
+  </div>
+
+  <div>
+
+    <md-subheader>图片地址:{{path}}</md-subheader>
+    <!-- <div> -->
+    <!-- <p>{{f.name}}</p>
+        <p>{{f.$error}}</p>
+        <p>{{f.$errorParam}}</p> -->
+    <!-- <span class="progress" ng-show="f.progress >= 0"> -->
+    <!-- <div ng-bind="f.progress + '%'" style="width:{{f.progress}}%"></div> -->
+    <!-- </span> -->
+    <!-- <p>{{path}}</p> -->
+    <!-- <p>{{errorMsg}}</p> -->
+    <!-- </div> -->
+    <button accept="image/*" class="md-button md-primary md-raised" ngf-max-height="1000" ngf-max-size="10MB" ngf-select="uploadFiles($file)" type="file">
+      上传图片</button>
+  </div>
+  <!--关联文章-->
+  <md-divider></md-divider>
+  <md-subheader>相关文章</md-subheader>
+  <div flex layout="row">
+    <div flex ng-repeat="category in categorys">
+      <md-subheader ng-click="openList(category)">{{category.name}}</md-subheader>
+      <md-list ng-show="category.showArticle">
+        <md-list-item ng-repeat="relationArticle in category.categoryArticles">
+          <md-checkbox ng-change="changeRelationArticl(relationArticle)" ng-model="relationArticle.checked"></md-checkbox>
+          <p>{{relationArticle.title}}</p>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+
+</div>
+<!--右侧配置项-->
+<md-sidenav class="md-sidenav-right self-article-setting" flex md-component-id="setting">
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">选项</h1>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-subheader>标题</md-subheader>
     <md-content layout-padding>
-
-      <!--<md-input-container>-->
-      <!--<label>Category</label>-->
-      <!--<input ng-model="article.category">-->
-      <!--</md-input-container>-->
-
       <md-input-container>
-        <label>Slug</label>
+        <label>中文长标题</label>
+        <input ng-model="article.title.zhLong">
+      </md-input-container>
+      <md-input-container>
+        <label>英文标题</label>
+        <input ng-model="article.title.en">
+      </md-input-container>
+      <md-input-container>
+        <label>英文长标题</label>
+        <input ng-model="article.title.enLong">
+      </md-input-container>
+    </md-content>
+
+    <md-subheader>其他</md-subheader>
+    <md-content layout-padding>
+      <md-input-container>
+        <label>背景</label>
+        <input ng-model="article.background">
+      </md-input-container>
+      <md-input-container>
+        <label>自定义Url</label>
         <input ng-model="article.slug">
       </md-input-container>
-
       <md-input-container>
-        <label>Description</label>
+        <label>描述</label>
         <textarea ng-model="article.description"></textarea>
       </md-input-container>
 
-      <md-autocomplete md-input-name="autocompleteField"
-                       md-selected-item="selectedItem"
-                       md-search-text="searchText"
-                       md-items="item in querySearch(searchText)"
-                       md-item-text="item.name"
-                       md-floating-label="Category">
+      <md-autocomplete md-floating-label="分类" md-input-name="autocompleteField" md-item-text="item.name" md-items="item in items" md-search-text="searchText" md-selected-item="selectedItem" ng-click="showAll()">
         <md-item-template>
           <span md-highlight-text="searchText">{{item.name}}</span>
         </md-item-template>
       </md-autocomplete>
 
-
-      <md-chips ng-model="article.tags"
-                placeholder="Enter a tag"
-                delete-button-label="Remove Tag"
-                delete-hint="Press delete to remove tag"
-                secondary-placeholder="+Tag">
-      </md-chips>
-
-
-
-
-
-
-      <md-button class="md-raised" ng-click="create()">Create</md-button>
-      <md-button class="md-raised" ng-click="cancel()">Cancel</md-button>
+      <md-chips delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" ng-model="article.tags" placeholder="标签" secondary-placeholder="+标签"></md-chips>
     </md-content>
-  </md-sidenav>
-</div>
+
+    <md-subheader>发布日期</md-subheader>
+    <md-datepicker md-placeholder="Enter date" ng-model="article.createDate"></md-datepicker>
+    <!-- <md-button class="md-raised" ng-click="create()">Create</md-button>
+      <md-button class="md-raised" ng-click="cancel()">Cancel</md-button> -->
+  </md-content>
+</md-sidenav>
