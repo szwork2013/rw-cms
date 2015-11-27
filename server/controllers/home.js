@@ -3,9 +3,13 @@ var Home = models.Home
 var base = require('./base')
 var Article = models.Article
 
-
 var home = base.init(Home)
+home.admin = base.boundAdmin()
 
+home.admin.getAll = function*(next){
+  this.body = this.state.docs[0]
+  yield next
+}
 
 home.common = {
   render: function*(next) {

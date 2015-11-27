@@ -26,21 +26,21 @@ adminRouter.get('/', function*(next) {
     yield send(this, config.staticPaths[1] + '/index.html')
   })
   //TODO:拦截静态资源
-// adminRouter.use(
-//   function*(next) {
-//     if(!this.session.isLogin) {
-//       var u = this.request.originalUrl.split('/')
-//       if(u[1] == 'login' || u[2] == 'login') {
-//         yield next
-//       } else {
-//         this.response.status = 401
-//       }
-//     } else {
-//       yield next
-//     }
-//   })
-//
-//article
+  // adminRouter.use(
+  //   function*(next) {
+  //     if(!this.session.isLogin) {
+  //       var u = this.request.originalUrl.split('/')
+  //       if(u[1] == 'login' || u[2] == 'login') {
+  //         yield next
+  //       } else {
+  //         this.response.status = 401
+  //       }
+  //     } else {
+  //       yield next
+  //     }
+  //   })
+  //
+  //article
 adminRouter.get('/article', article.getAll, article.admin.getAll)
 adminRouter.get('/article/:id', article.getById, article.admin.getById)
 adminRouter.post('/article', article.create, article.admin.create)
@@ -54,12 +54,29 @@ adminRouter.post('/category', category.create, category.admin.create)
 adminRouter.put('/category/:id', category.updateById, category.admin.updateById)
 adminRouter.del('/category/:id', category.deleteById, category.admin.deleteById)
   //获取所属类别文章
-adminRouter.get('/category-articles/:categoryId', category.getCategoryArticles, category.admin.getCategoryArticles)
+adminRouter.get('/category-articles/:categoryId', category.getCategoryArticles, category.admin
+  .getCategoryArticles)
 
+
+//setting-------------------------
+//layout
+adminRouter.get('/layout', layout.getAll, layout.admin.getAll)
+adminRouter.put('/layout/:id', layout.updateById, layout.admin.updateById)
+
+//homepage
+adminRouter.get('/home', home.getAll, home.admin.getAll)
+adminRouter.put('/home/:id', home.updateById, home.admin.updateById)
+
+//aboutpage
+adminRouter.get('/about', about.getAll, about.admin.getAll)
+adminRouter.put('/about/:id', about.updateById, about.admin.updateById)
+
+//权限------------------------------------
 //author
 adminRouter.get('/author', author.getAll, author.admin.getAll)
 adminRouter.get('/author/:id', author.getById, author.admin.getById)
-  //注册
+
+//注册
 adminRouter.post('/author', author.create, author.admin.create)
 adminRouter.put('/author/:id', author.updateById, author.admin.updateById)
 adminRouter.del('/author/:id', author.deleteById, author.admin.deleteById)

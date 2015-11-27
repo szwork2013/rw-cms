@@ -179,7 +179,6 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
               id: $stateParams.id
             }, function() {
               //查找类别combox初始项
-              console.log($scope.article)
               $scope.selectedItem = _.find($scope.categorys, function(category) {
                   return category._id == $scope.article.category
                 })

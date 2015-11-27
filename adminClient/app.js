@@ -11,6 +11,9 @@ var article = require('./article')
 var category = require('./category')
 var login = require('./login')
 var frame = require('./frame')
+var layout = require('./layout')
+var homepage = require('./homepage')
+var aboutpage = require('./aboutpage')
 var models = require('./models/models')
 
 var angularMaterialCss = require('angular-material/angular-material.css')
@@ -29,9 +32,16 @@ require('../util/textAngular')
 require('font-awesome/css/font-awesome.css')
 
 
-var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, uiRouter, ngCookies, ngMaterial, ngMessages, ngResource, article.name, login.name, frame.name, category.name, models.name])
+var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
+  uiRouter, ngCookies,
+  ngMaterial, ngMessages, ngResource, article.name, login.name, frame.name,
+  category.name,
+  homepage.name, aboutpage.name, layout.name, models.name
+])
 
-.config(function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider) {
+.config(function($httpProvider, $locationProvider, $stateProvider,
+  $urlRouterProvider,
+  $mdThemingProvider) {
 
   //设置主题
   $mdThemingProvider.theme('default')
@@ -42,8 +52,8 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
     .state('home', {
       url: '',
       views: {
-        'out-wrapper':{
-          templateUrl:'frame/templates/frame.html'
+        'out-wrapper': {
+          templateUrl: 'frame/templates/frame.html'
         }
       }
     })
@@ -102,14 +112,45 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
   })
 
   .state('home.article.edit', {
-    url: '/:id',
+      url: '/:id',
+      views: {
+        'main@home': {
+          templateUrl: 'article/templates/article.edit.html',
+          controller: 'ArticleEditCtrl'
+        }
+      }
+    })
+    .state('home.layout', {
+      url: '/layout',
+      views: {
+        'main': {
+          templateUrl: 'layout/templates/layout.html',
+          controller: 'LayoutCtrl'
+        }
+      }
+    })
+
+  .state('home.aboutpage', {
+    url: '/aboutpage',
     views: {
-      'main@home': {
-        templateUrl: 'article/templates/article.edit.html',
-        controller: 'ArticleEditCtrl'
+      'main': {
+        templateUrl: 'aboutpage/templates/aboutpage.html',
+        controller: 'AboutpageCtrl'
       }
     }
   })
+
+  .state('home.homepage', {
+    url: '/homepage',
+    views: {
+      'main': {
+        templateUrl: 'homepage/templates/homepage.html',
+        controller: 'HomepageCtrl'
+      }
+    }
+  })
+
+
 
 
   $urlRouterProvider.otherwise('/')

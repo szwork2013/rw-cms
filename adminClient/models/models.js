@@ -5,7 +5,8 @@ module.exports = angular.module('models', [])
 .factory('LoginInterceptor', function($q, $injector, $location, $cookies) {
   var interceptor = {
     request: function(config) {
-      if(config.url.split('/')[0] == 'login' || config.url.split('/')[2] == 'login') {
+      if(config.url.split('/')[0] == 'login' || config.url.split('/')[2] ==
+        'login') {
         $cookies.put('loginPage', true)
       } else {
         $cookies.put('loginPage', false)
@@ -49,24 +50,43 @@ module.exports = angular.module('models', [])
 })
 
 .factory('Article', function($resource, ModelUtil) {
-  return $resource('/admin/article/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt.method)
+  return $resource('/admin/article/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
 })
 
 .factory('Category', function($resource, ModelUtil) {
-  return $resource('/admin/category/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt.method)
+  return $resource('/admin/category/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
 })
 
 .factory('CategoryAtrticles', function($resource, ModelUtil) {
-  return $resource('/admin/category-articles/:categoryId?keys=:keys&&pageAgr=:pageAgr', null, {
-    get: {
-      method: 'GET',
-      isArray: true
-    }
-  })
+  return $resource(
+    '/admin/category-articles/:categoryId?keys=:keys&&pageAgr=:pageAgr', null, {
+      get: {
+        method: 'GET',
+        isArray: true
+      }
+    })
+})
+
+.factory('Layout', function($resource, ModelUtil) {
+  return $resource('/admin/layout/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
+})
+
+.factory('Homepage', function($resource, ModelUtil) {
+  return $resource('/admin/home/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
+})
+
+.factory('Aboutpage', function($resource, ModelUtil) {
+  return $resource('/admin/about/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
 })
 
 .factory('Author', function($resource, ModelUtil) {
-  return $resource('/admin/author/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt.method)
+  return $resource('/admin/author/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+    .method)
 })
 
 .factory('Login', function($http) {

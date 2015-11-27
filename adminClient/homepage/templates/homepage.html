@@ -1,0 +1,79 @@
+<div class="self-homepage-edit" layout-padding >
+  <h3>标题区域</h3>
+  <md-input-container>
+    <label>描述</label>
+    <input ng-model="homepage.slideHeader.description">
+  </md-input-container>
+  <!-- <p class="md-subheader">描述</p>
+  <textarea ng-model="layout.slideHeader.description" cols="30" rows="10"></textarea> -->
+  <button accept="image/*" class="self-image-placeholder"
+    ng-style="imageBackPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
+    ngf-select="uploadBgcImage($file)" type="file">
+    <span ng-show="!homepage.slideHeader.bigImgUrl">上传图片</span>
+  </button>
+  <md-input-container>
+    <label>背景图</label>
+    <input ng-model="homepage.slideHeader.bigImgUrl">
+  </md-input-container>
+  <button accept="image/*" class="self-image-placeholder"
+    ng-style="imageRightPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
+    ngf-select="uploadRighImage($file)" type="file">
+    <span ng-show="!homepage.slideHeader.smallImgUrl">上传图片</span>
+  </button>
+  <md-input-container>
+    <label>右侧图片</label>
+    <input ng-model="homepage.slideHeader.smallImgUrl">
+  </md-input-container>
+
+  <h3>Banner</h3>
+  <md-input-container>
+    <label>中文描述</label>
+    <input ng-model="homepage.midBanner.cn">
+  </md-input-container>
+  <md-input-container>
+    <label>英文描述</label>
+    <input ng-model="homepage.midBanner.en">
+  </md-input-container>
+
+  <h3>关于</h3>
+  <md-input-container>
+    <label>中文标题</label>
+    <input ng-model="homepage.about.title.cn">
+  </md-input-container>
+  <md-input-container>
+    <label>英文标题</label>
+    <input ng-model="homepage.about.title.en">
+  </md-input-container>
+  <md-input-container>
+    <label>内容</label>
+    <input ng-model="homepage.about.content">
+  </md-input-container>
+  <md-input-container>
+    <label>图片</label>
+    <input ng-model="homepage.about.imgUrl">
+  </md-input-container>
+
+  <h3>联系我们</h3>
+  <md-input-container>
+    <label>中文标题</label>
+    <input ng-model="homepage.contect.title.cn">
+  </md-input-container>
+  <md-input-container>
+    <label>英文标题</label>
+    <input ng-model="homepage.contect.title.en">
+  </md-input-container>
+  <md-input-container>
+    <label>内容</label>
+    <input ng-model="homepage.contect.content">
+  </md-input-container>
+  <md-input-container>
+    <label>图片</label>
+    <input ng-model="homepage.contect.imgUrl">
+  </md-input-container>
+
+  <div layout-align="end center" layout="row">
+    <md-button class="md-raised self-publish-button-setting md-primary" flex ng-click="update()">
+      更新
+    </md-button>
+  </div>
+</div>
