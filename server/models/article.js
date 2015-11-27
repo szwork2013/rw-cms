@@ -55,8 +55,15 @@ var ArticleSchema = new Schema({
   relationArticle: {
     type: [ObjectId]
   },
-  background:{
+  backgroundColor:{
     type:String
+  },
+  backgroundImage:{
+    type:String
+  },
+  publishDate: {
+    type: Date,
+    default: Date.now
   },
   createDate: {
     type: Date,
@@ -88,10 +95,14 @@ ArticleSchema.set('toObject', {
   virtuals: true
 })
 
-//ArticleSchema.post('find', function (docs) {
-//  docs.forEach(function(doc){
-//    doc.title = doc.titles.default
-//  })
-//})
+
+ArticleSchema.post('save', function(doc) {
+  if(doc.slug === undefined || doc.slug === ''){
+    doc.slug = doc._id.toString()
+    console.log(doc)
+    doc.save()
+  }
+})
+
 
 module.exports = mongoose.model('Article', ArticleSchema)

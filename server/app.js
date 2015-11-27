@@ -32,7 +32,7 @@ config.staticPaths.forEach(function(staticPath) {
 
 
 app.use(multer({
-  dest: config.staticPaths[0] + '/upload/'
+  dest: config.staticPaths[0] + '/upload/img/'
 }))
 
 //链接数据库

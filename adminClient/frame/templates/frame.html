@@ -1,0 +1,56 @@
+<section layout="row" ng-controller="frameCtrl" style="height:100%">
+  <!--左侧分类导航-->
+  <md-sidenav class="self-index-slidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-list>
+      <md-list-item layout-padding>
+        <p class="md-headline ">admin</p>
+        <md-menu md-offset="-100 50">
+          <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+            <md-icon md-menu-origin md-svg-src="../fonts/icons/ic_keyboard_arrow_down_24px.svg"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button>
+                个人设置
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button ng-click="logout()">
+                注销
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item ng-click="toUrl('home.article.create')">
+        <md-icon md-svg-src="../fonts/icons/ic_add_24px.svg"></md-icon>
+        <p>新建</p>
+      </md-list-item>
+      <md-list-item ng-click="toUrl('home.category')">
+        <md-icon md-svg-src="../fonts/icons/ic_view_column_24px.svg"></md-icon>
+        <p>文章</p>
+      </md-list-item>
+      <md-subheader>设置</md-subheader>
+    </md-list>
+    <md-toolbar class="self-bottom-toolBar">
+      <md-divider></md-divider>
+      <div class="md-toolbar-tools">
+        <md-button aria-label="Settings" class="md-icon-button">
+          <md-icon md-svg-icon="../fonts/icons/ic_keyboard_arrow_left_24px.svg"></md-icon>
+        </md-button>
+        <span flex></span>
+        <a href="/">
+          <p class="md-subhead">
+            访问主站
+          </p>
+        </a>
+      </div>
+    </md-toolbar>
+  </md-sidenav>
+
+  <md-content flex style="height: 100%;">
+    <div style="height:100%" ui-view="main"></div>
+  </md-content>
+</section>

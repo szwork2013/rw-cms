@@ -1,0 +1,39 @@
+* {
+  // -webkit-margin-before: 0;
+  // -webkit-margin-after: 0;
+  &:focus{
+    outline: none;
+  }
+}
+
+$mainBgc:#f5f7f8;
+
+button, select, html, textarea, input {
+  font-family: Roboto, "Helvetica Neue", 'Lantinghei SC',sans-serif !important;
+}
+
+.self-index-slidenav{
+  background-color:$mainBgc;
+  // max-width:250px !important;
+  // width:250px !important;
+  // min-width:0 !important;
+  .md-subheader{
+    background-color: transparent;
+  }
+
+  button,.md-ripple-container{
+    border-radius: 0 !important;
+  }
+
+  .self-bottom-toolBar{
+
+    position:fixed;
+    bottom:0;
+    background-color: transparent;
+    color:rgba(0, 0, 0, 0.870588);
+
+    md-icon{
+      color:rgba(0, 0, 0, 0.870588);
+    }
+  }
+}

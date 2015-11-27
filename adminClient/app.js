@@ -10,9 +10,10 @@ var ngFileUpload = require('ng-file-upload')
 var article = require('./article')
 var category = require('./category')
 var login = require('./login')
+var frame = require('./frame')
 var models = require('./models/models')
 
-var angularMaterialCss = require('angular-material/angular-material.scss')
+var angularMaterialCss = require('angular-material/angular-material.css')
 
 //markdown
 //var ngSanitize = require('angular-sanitize')
@@ -28,24 +29,28 @@ require('../util/textAngular')
 require('font-awesome/css/font-awesome.css')
 
 
-var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, uiRouter, ngCookies, ngMaterial, ngMessages, ngResource, article.name, login.name, category.name, models.name])
+var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, uiRouter, ngCookies, ngMaterial, ngMessages, ngResource, article.name, login.name, frame.name, category.name, models.name])
 
-.config(function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider,$mdThemingProvider) {
+.config(function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
-   $mdThemingProvider.theme('default')
+  $mdThemingProvider.theme('default')
 
   $httpProvider.interceptors.push('myInterceptor')
 
   $stateProvider
     .state('home', {
-      url: '/',
-      views: {}
+      url: '',
+      views: {
+        'out-wrapper':{
+          templateUrl:'frame/templates/frame.html'
+        }
+      }
     })
 
   .state('login', {
       url: '/login',
       views: {
-        'main': {
+        'out-wrapper': {
           templateUrl: 'login/templates/login.html',
           controller: 'LoginCtrl'
         }
@@ -54,14 +59,14 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
     .state('register', {
       url: '/register',
       views: {
-        'main': {
+        'out-wrapper': {
           templateUrl: 'login/templates/register.html',
           controller: 'RegisterCtrl'
         }
       }
     })
 
-  .state('category', {
+  .state('home.category', {
     url: '/category',
     views: {
       'main': {
@@ -71,7 +76,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
     }
   })
 
-  .state('category.articles', {
+  .state('home.category.articles', {
     url: '/:id',
     views: {
       'submain': {
@@ -81,24 +86,24 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
     }
   })
 
-  .state('article', {
+  .state('home.article', {
     url: '/article',
   })
 
-  .state('article.create', {
+  .state('home.article.create', {
     url: '/create',
     views: {
-      'main@': {
+      'main@home': {
         templateUrl: 'article/templates/article.edit.html',
         controller: 'ArticleCreateCtrl'
       }
     }
   })
 
-  .state('article.edit', {
+  .state('home.article.edit', {
     url: '/:id',
     views: {
-      'main@': {
+      'main@home': {
         templateUrl: 'article/templates/article.edit.html',
         controller: 'ArticleEditCtrl'
       }
@@ -113,6 +118,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
   //TODO:登陆重定向
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams) {
+
       if(!$cookies.get('isLogin') && toState.name !== 'login') {
         event.preventDefault();
         $state.go('login')
@@ -125,15 +131,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
 
 .controller('ctrl', function($scope, $http, $state) {
 
-  $scope.openMenu = function($mdOpenMenu, ev) {
-    originatorEv = ev
-    $mdOpenMenu(ev)
-  }
-  $scope.logout = function() {
-    $http.post('/admin/logout', null, function(err, doc) {
-      console.log(err, doc)
-    })
-  }
+
 })
 
 module.exports = app

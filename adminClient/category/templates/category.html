@@ -5,7 +5,7 @@
     <md-divider></md-divider>
 
     <md-list-item ng-repeat="category in categorys">
-      <md-button ui-sref="category.articles({id:category._id})">
+      <md-button ui-sref="home.category.articles({id:category._id})">
         {{category.name}}
       </md-button>
     </md-list-item>
