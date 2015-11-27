@@ -19,7 +19,7 @@ category.getCategoryArticles = function*(next) {
     }, keys[0] + ' ' + keys[1], {
       limit: pageAgr.singleNum,
       skip: range[0]
-    }).exec(),
+    }).sort({createDate:-1}).exec(),
     yield Article.find({
       category: this.params.categoryId
     }).count().exec()

@@ -33,9 +33,10 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload, ui
 
 .config(function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider) {
 
+  //设置主题
   $mdThemingProvider.theme('default')
 
-  $httpProvider.interceptors.push('myInterceptor')
+  $httpProvider.interceptors.push('LoginInterceptor')
 
   $stateProvider
     .state('home', {

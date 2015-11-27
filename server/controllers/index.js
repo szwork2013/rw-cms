@@ -17,30 +17,29 @@ var adminRouter = new Router({
 
 
 adminRouter.get('/', function*(next) {
-    if(this.cookies.get('isLogin') === undefined) {
-      this.cookies.set('isLogin', false, {
-        sign: false,
-        httpOnly: false
-      })
-    }
+    // if(this.cookies.get('isLogin') === undefined) {
+    //   this.cookies.set('isLogin', false, {
+    //     sign: false,
+    //     httpOnly: false
+    //   })
+    // }
     yield send(this, config.staticPaths[1] + '/index.html')
-    yield next
   })
   //TODO:拦截静态资源
-adminRouter.use(
-  function*(next) {
-    if(!this.session.isLogin) {
-      var u = this.request.originalUrl.split('/')
-      if(u[1] == 'login' || u[2] == 'login') {
-        yield next
-      } else {
-        this.response.status = 401
-      }
-    } else {
-      yield next
-    }
-  })
-
+// adminRouter.use(
+//   function*(next) {
+//     if(!this.session.isLogin) {
+//       var u = this.request.originalUrl.split('/')
+//       if(u[1] == 'login' || u[2] == 'login') {
+//         yield next
+//       } else {
+//         this.response.status = 401
+//       }
+//     } else {
+//       yield next
+//     }
+//   })
+//
 //article
 adminRouter.get('/article', article.getAll, article.admin.getAll)
 adminRouter.get('/article/:id', article.getById, article.admin.getById)
@@ -88,9 +87,9 @@ adminRouter.post('/upload', function*(next) {
 
 //公开页面--------------------------------------------
 router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
-router.get('/about', layout.getAll,layout.common.get, about.getAll, about.common.render)
-router.get('/article/:slug', layout.getAll,layout.common.get, article.common.render)
-router.get('/:slug', layout.getAll,layout.common.get,category.common.render)
+router.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
+router.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
+router.get('/:slug', layout.getAll, layout.common.get, category.common.render)
 
 
 router.use('', adminRouter.routes())

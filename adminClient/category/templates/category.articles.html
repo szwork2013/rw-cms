@@ -1,13 +1,10 @@
 <div class="self-category-articles">
   <md-content flex>
 
-    <!--<ul>-->
-    <!--<li ng-repeat="i in range(pageNum) track by $index"><div ng-click="getData($index+1)">{{$index+1}}</div></li>-->
-    <!--</ul>-->
     <md-list>
       <md-subheader>文章</md-subheader>
       <md-divider></md-divider>
-      <md-list-item layout-padding ng-click="preview(article);$event.stopPropagation()" ng-repeat="article in articles">
+      <md-list-item ng-click="preview(article);$event.stopPropagation()" ng-repeat="article in articles">
         <p>{{article.title}}</p>
         <md-button class="md-icon-button  md-primary">
           <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg" ui-sref="home.article.edit({id:article._id})"></md-icon>

@@ -2,7 +2,7 @@ var angular = require('angular')
 
 module.exports = angular.module('models', [])
 
-.factory('myInterceptor', function($q, $injector, $location, $cookies) {
+.factory('LoginInterceptor', function($q, $injector, $location, $cookies) {
   var interceptor = {
     request: function(config) {
       if(config.url.split('/')[0] == 'login' || config.url.split('/')[2] == 'login') {
@@ -10,7 +10,6 @@ module.exports = angular.module('models', [])
       } else {
         $cookies.put('loginPage', false)
       }
-      console.log($cookies.get('loginPage'))
       return config; // 或者 $q.when(config);
     },
     response: function(response) { // 响应成功

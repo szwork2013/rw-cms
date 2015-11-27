@@ -24,7 +24,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['ng-annotate']
+      loader: 'ng-annotate'
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'

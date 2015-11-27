@@ -105,6 +105,7 @@ nav {
   display: block;
   background-color: #fff;
 
+
   // min-width: 300px;
   height: 300px;
   border: 2px outset #c7c5c5;
@@ -117,6 +118,9 @@ nav {
     position: relative;
     height: 200px;
     background-color: #1a8386;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     margin: 0 auto;
     padding-top: 65px;
     margin-bottom: 20px;

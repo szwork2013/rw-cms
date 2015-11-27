@@ -24,5 +24,3 @@ var login = {
 }
 
 module.exports = login
-
-

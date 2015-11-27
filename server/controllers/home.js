@@ -11,6 +11,9 @@ home.common = {
   render: function*(next) {
     this.state.homeData = this.state.docs[0]
     this.state.articles = yield Article.find().exec()
+    this.state.articles.forEach(function(article){
+      article.background = article.backgroundImage ? 'url('+article.backgroundImage+')' :article.backgroundColor
+    })
     yield this.render('index', {
       articles:this.state.articles,
       layoutData: this.state.layoutData,

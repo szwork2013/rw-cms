@@ -6,12 +6,12 @@ require('angular-bootstrap-colorpicker/css/colorpicker.css')
 
 
 module.exports = angular.module('article.controllers', ['colorpicker.module'])
-  .controller('ArticleCreateCtrl', function($scope, $timeout, $state, Article, Category, $window, $mdSidenav, Upload) {
+  .controller('ArticleBaseCtrl', function($scope, $timeout, $state, Article, Category, $window, $mdSidenav, Upload) {
     //显示隐藏选项菜单
     $scope.toogleSetting = function() {
-      $mdSidenav('setting').toggle()
-    }
-    //上传文件
+        $mdSidenav('setting').toggle()
+      }
+      //上传文件
 
     $scope.$watch('article.backgroundImage', function(newValue, oldValue) {
       console.log(newValue, oldValue)
@@ -63,28 +63,6 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     }
 
 
-    $scope.article = new Article()
-    $scope.article.content = ''
-    $scope.article.tags = []
-    $scope.article.relationArticle = []
-
-    //拿出分类及填充combobox
-    Category.query(function(categorys) {
-      $scope.categorys = _.toArray(categorys)
-      Article.query(function(articles) {
-        $scope.articles = _.toArray(articles)
-
-        $scope.categorys.forEach(function(category) {
-          category.showArticle = true
-          var categoryArticles = _.filter($scope.articles, function(n) {
-            return n.category == category._id
-          })
-          category.categoryArticles = _.isArray(categoryArticles) ? categoryArticles : [categoryArticles]
-
-        })
-      })
-    })
-
 
     $scope.searchTextChange = function(searchText) {
       console.log(searchText)
@@ -123,7 +101,6 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     //提交
     $scope.create = function() {
       $scope.article.category = $scope.selectedItem._id
-      console.log($scope.article)
       $scope.article.$save(function(data) {
         $state.go('home.category.articles', {
           id: $scope.article.category
@@ -140,99 +117,98 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
 
 
 //---------------------
-.controller('ArticleEditCtrl', function($scope, $timeout, Upload, $stateParams, Article, Category, $state, $window) {
+.controller('ArticleCreateCtrl', function($scope, $controller, $timeout, Upload, $stateParams, Article, Category, $state, $window) {
+    //继承
+    angular.extend(this, $controller('ArticleBaseCtrl', {
+        $scope: $scope
+      }))
+      //初始化
+    $scope.init = function() {
+      $scope.publishButtonText = '发布'
+      $scope.article = new Article()
+      $scope.article.content = ''
+      $scope.article.tags = []
+      $scope.article.relationArticle = []
 
-  $scope.uploadFiles = function(file) {
-    $scope.f = file;
-    if(file && !file.$error) {
-      file.upload = Upload.upload({
-        url: '/admin/upload',
-        file: file
-      })
+      //拿出分类及填充combobox
+      Category.query(function(categorys) {
+        $scope.categorys = _.toArray(categorys)
+        Article.query(function(articles) {
+          $scope.articles = _.toArray(articles)
 
-      file.upload.then(function(response) {
-        $timeout(function() {
-          file.result = response.data;
-          $scope.path = '/upload/img/' + file.result.name
-            //$scope.news.content += '<img src="' + $scope.path + '">'
-        })
-      }, function(response) {
-        if(response.status > 0)
-          $scope.errorMsg = response.status + ': ' + response.data;
-      })
-
-      file.upload.progress(function(evt) {
-        file.progress = Math.min(100, parseInt(100.0 *
-          evt.loaded / evt.total));
-      })
-    }
-  }
-  Category.query(function(categorys) {
-    $scope.categorys = _.toArray(categorys)
-    Article.query(function(articles) {
-      $scope.articles = _.toArray(articles)
-
-      //绑定类别及关联文章
-      $scope.categorys.forEach(function(category) {
-        category.showArticle = true
-        var categoryArticles = _.filter($scope.articles, function(n) {
-          return n.category == category._id
-        })
-        category.categoryArticles = _.isArray(categoryArticles) ? categoryArticles : [categoryArticles]
-
-        $scope.article = Article.get({
-          id: $stateParams.id
-        }, function() {
-          $scope.selectedItem = _.find($scope.categorys, function(category) {
-            return category._id == $scope.article.category
-          })
-          $scope.article.relationArticle.forEach(function(_id) {
-            var checkItem = _.find($scope.articles, function(n) {
-              return n._id == _id
+          $scope.categorys.forEach(function(category) {
+            category.showArticle = true
+            var categoryArticles = _.filter($scope.articles, function(n) {
+              return n.category == category._id
             })
-            if(checkItem != undefined)
-              checkItem.checked = true
+            category.categoryArticles = _.isArray(categoryArticles) ? categoryArticles : [categoryArticles]
+
           })
         })
       })
-    })
+    }
+    $scope.init()
+
   })
+  .controller('ArticleEditCtrl', function($scope, $controller, $timeout, Upload, $stateParams, Article, Category, $state, $window) {
+    //继承
+    angular.extend(this, $controller('ArticleBaseCtrl', {
+      $scope: $scope
+    }))
 
-  $scope.create = function() {
-    $scope.article.category = $scope.selectedItem._id
-    Article.update({
-      id: $scope.article._id
-    }, $scope.article, function(data) {
-      $state.go('category.articles', {
-        id: $scope.article.category
-      })
-    }, function(err) {
-      console.log(err)
-    })
-  }
+    $scope.init = function() {
+      $scope.publishButtonText = "更新"
 
-  $scope.querySearch = function(searchText) {
-    var result = searchText !== '' ? $scope.categorys.filter(function(category) {
-      return category.name.indexOf(searchText) === 0
-    }) : $scope.categorys
-    return result
-  }
+      Category.query(function(categorys) {
 
-  $scope.cancel = function() {
-    $window.history.back()
-  }
+        //绑定分类
+        $scope.categorys = _.toArray(categorys)
+          //绑定文章
+        Article.query(function(articles) {
+          $scope.articles = _.toArray(articles)
 
-  $scope.openList = function(category) {
-    category.showArticle = !category.showArticle
-  }
+          //绑定类别及关联文章
+          $scope.categorys.forEach(function(category) {
+            category.showArticle = true
+            var categoryArticles = _.filter($scope.articles, function(n) {
+              return n.category == category._id
+            })
+            category.categoryArticles = _.isArray(categoryArticles) ? categoryArticles : [categoryArticles]
 
-  $scope.changeRelationArticl = function(article) {
-    if(article.checked) {
-      $scope.article.relationArticle.push(article._id)
-    } else {
-      _.remove($scope.article.relationArticle, function(n) {
-        return n == article._id
+            $scope.article = Article.get({
+              id: $stateParams.id
+            }, function() {
+              //查找类别combox初始项
+              console.log($scope.article)
+              $scope.selectedItem = _.find($scope.categorys, function(category) {
+                  return category._id == $scope.article.category
+                })
+                //check关联文章
+              $scope.article.relationArticle.forEach(function(_id) {
+                var checkItem = _.find($scope.articles, function(n) {
+                  return n._id == _id
+                })
+                if(checkItem != undefined)
+                  checkItem.checked = true
+              })
+            })
+          })
+        })
       })
     }
-  }
-})
+    $scope.init()
+
+
+    $scope.create = function() {
+      $scope.article.category = $scope.selectedItem._id
+      Article.update({
+        id: $scope.article._id
+      }, $scope.article, function(data) {
+        $state.go('home.category.articles', {
+          id: $scope.article.category
+        })
+      }, function(err) {
+        console.log(err)
+      })
+    }
+  })

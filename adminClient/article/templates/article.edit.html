@@ -1,6 +1,6 @@
 <!-- 富文本-->
 <!--编辑内容-->
-<div class="self-article-edit" layout-padding layout="column">
+<div class="self-article-edit" layout-padding layout="column" >
   <!--title-->
   <div layout="row">
     <md-input-container flex>
@@ -11,7 +11,7 @@
       <md-icon md-svg-src="../fonts/icons/ic_settings_24px.svg"></md-icon>
     </md-button>
     <md-button class="md-raised self-publish-button md-primary" flex ng-click="create()">
-      发布
+      {{publishButtonText}}
     </md-button>
   </div>
   <!--content-->

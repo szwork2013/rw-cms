@@ -16,6 +16,7 @@ module.exports = angular.module('category.controllers', [])
         pageAgr: [pageNum, defaultListNum],
       }, function (data) {
         $scope.articles = _.toArray(data[0])
+      
         $scope.articleCount = data[1]
         $scope.pageNum = Math.floor($scope.articleCount / defaultListNum)+1
         if($scope.articleCount % defaultListNum==0 && $scope.pageNum !=1){
