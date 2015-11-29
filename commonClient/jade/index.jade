@@ -4,11 +4,11 @@ block content
   include ./includes/slide-header.jade
   include ./includes/mid-banner.jade
   
-  +slide-header(layoutData.slideHeader)  
-  +mid-banner(layoutData.midBanner)
+  +slide-header(homeData.slideHeader)  
+  +mid-banner(homeData.midBanner)
   
   // area 1:服务与方案
-  section.area.area-1#area-1
+  section.area.area-1#services-and-solutions
     // area title
     .area-title
       h3 Services and solutions
@@ -26,7 +26,7 @@ block content
                 p #{article.title}
                 p #{article.description}
   // area 2:项目案例
-  section.area.area-2#area-2
+  section.area.area-2#project-case
     // area title
     .area-title
       h3

@@ -1,0 +1,30 @@
+<md-list>
+  <md-subheader>设置</md-subheader>
+  <md-divider></md-divider>
+</md-list>
+
+<div layout-padding>
+  <md-input-container>
+    <label>中文名称</label>
+    <input ng-model="category.name">
+  </md-input-container>
+  <md-input-container>
+    <label>英文名称</label>
+    <input ng-model="category.nameEn">
+  </md-input-container>
+  <md-input-container>
+    <label>Url</label>
+    <input ng-model="category.slug">
+  </md-input-container>
+  <md-input-container>
+    <label>描述</label>
+    <input ng-model="category.description">
+  </md-input-container>
+
+  <div layout-align="end center" layout="row">
+    <md-button class="md-raised self-publish-button-setting md-primary" flex
+      ng-click="update()">
+      {{submitButtonText}}
+    </md-button>
+  </div>
+</div>

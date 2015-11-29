@@ -1,6 +1,6 @@
 <!-- 富文本-->
 <!--编辑内容-->
-<div class="self-article-edit" layout-padding layout="column" >
+<div class="self-article-edit" layout-padding layout="column">
   <!--title-->
   <div layout="row">
     <md-input-container flex>
@@ -32,7 +32,8 @@
     <!-- <p>{{path}}</p> -->
     <!-- <p>{{errorMsg}}</p> -->
     <!-- </div> -->
-    <button  class="md-button md-primary md-raised" accept="image/*" ngf-max-height="1000" ngf-max-size="10MB" ngf-select="uploadFiles($file)" type="file">
+    <button accept="image/*" class="md-button md-primary md-raised" ngf-max-height="1000"
+      ngf-max-size="10MB" ngf-select="uploadFiles($file)" type="file">
       上传图片</button>
   </div>
   <!--关联文章-->
@@ -43,7 +44,8 @@
       <md-subheader ng-click="toogleList(category)">{{category.name}}</md-subheader>
       <md-list ng-show="category.showArticle">
         <md-list-item ng-repeat="relationArticle in category.categoryArticles">
-          <md-checkbox ng-change="changeRelationArticl(relationArticle)" ng-model="relationArticle.checked"></md-checkbox>
+          <md-checkbox ng-change="changeRelationArticl(relationArticle)"
+            ng-model="relationArticle.checked"></md-checkbox>
           <p>{{relationArticle.title}}</p>
         </md-list-item>
       </md-list>
@@ -52,7 +54,7 @@
 
 </div>
 <!--右侧配置项-->
-<md-sidenav class="md-sidenav-right self-article-setting"  flex md-component-id="setting">
+<md-sidenav class="md-sidenav-right self-article-setting" flex md-component-id="setting">
   <md-toolbar class="md-theme-light">
     <h1 class="md-toolbar-tools">选项</h1>
   </md-toolbar>
@@ -79,12 +81,7 @@
         <label>背景色</label>
         <input colorpicker ng-model="article.backgroundColor">
       </md-input-container>
-      <button class="self-image-placeholder" accept="image/*"
-      ngf-max-height="1000" ngf-max-size="10MB" ngf-select="uploadBgcImage($file)" type="file"
-      ng-style="imagePlaceholderStyle"
-      >
-        <span ng-show="!article.backgroundImage">上传图片</span>
-      </button>
+      <self-upload-image image-url="article.backgroundImage"></self-upload-image>
       <md-input-container>
         <label>背景图片</label>
         <input ng-model="article.backgroundImage">
@@ -100,7 +97,9 @@
         <textarea ng-model="article.description"></textarea>
       </md-input-container>
 
-      <md-autocomplete md-floating-label="分类" md-item-text="item.name" md-items="item in items" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem">
+      <md-autocomplete md-floating-label="分类" md-item-text="item.name" md-items="item in items"
+        md-search-text-change="searchTextChange(searchText)" md-search-text="searchText"
+        md-selected-item-change="selectedItemChange(item)" md-selected-item="selectedItem">
         <md-item-template>
           <span md-highlight-flags="^i" md-highlight-text="searchText">{{item.name}}</span>
         </md-item-template>
@@ -109,7 +108,8 @@
         </md-not-found>
       </md-autocomplete>
 
-      <md-chips delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" ng-model="article.tags" placeholder="标签" secondary-placeholder="+标签"></md-chips>
+      <md-chips delete-button-label="Remove Tag" delete-hint="Press delete to remove tag"
+        ng-model="article.tags" placeholder="标签" secondary-placeholder="+标签"></md-chips>
     </md-content>
 
     <md-subheader>发布日期</md-subheader>

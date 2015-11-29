@@ -2,23 +2,14 @@
   <h3>标题区域</h3>
   <md-input-container>
     <label>描述</label>
-    <input ng-model="homepage.slideHeader.description">
+    <textarea ng-model="homepage.slideHeader.description"></textarea>
   </md-input-container>
-  <!-- <p class="md-subheader">描述</p>
-  <textarea ng-model="layout.slideHeader.description" cols="30" rows="10"></textarea> -->
-  <button accept="image/*" class="self-image-placeholder"
-    ng-style="imageBackPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
-    ngf-select="uploadBgcImage($file)" type="file">
-    <span ng-show="!homepage.slideHeader.bigImgUrl">上传图片</span>
-  </button>
+  <self-upload-image image-url="homepage.slideHeader.bigImgUrl"></self-upload-image>
   <md-input-container>
     <label>背景图</label>
     <input ng-model="homepage.slideHeader.bigImgUrl">
   </md-input-container>
-  <button accept="image/*" class="self-image-placeholder"
-    ng-style="imageRightPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
-    ngf-select="uploadRighImage($file)" type="file">
-    <span ng-show="!homepage.slideHeader.smallImgUrl">上传图片</span>
+  <self-upload-image image-url="homepage.slideHeader.smallImgUrl"></self-upload-image>
   </button>
   <md-input-container>
     <label>右侧图片</label>
@@ -64,7 +55,7 @@
   </md-input-container>
   <md-input-container>
     <label>内容</label>
-    <input ng-model="homepage.contect.content">
+    <textarea ng-model="homepage.contect.content"></textarea>
   </md-input-container>
   <md-input-container>
     <label>图片</label>
@@ -72,7 +63,8 @@
   </md-input-container>
 
   <div layout-align="end center" layout="row">
-    <md-button class="md-raised self-publish-button-setting md-primary" flex ng-click="update()">
+    <md-button class="md-raised self-publish-button-setting md-primary" flex
+      ng-click="update()">
       更新
     </md-button>
   </div>

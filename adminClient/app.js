@@ -7,6 +7,8 @@ var ngMessages = require('angular-messages')
 var uiRouter = require('angular-ui-router')
 var ngCookies = require('angular-cookies')
 var ngFileUpload = require('ng-file-upload')
+
+//controller
 var article = require('./article')
 var category = require('./category')
 var login = require('./login')
@@ -14,7 +16,11 @@ var frame = require('./frame')
 var layout = require('./layout')
 var homepage = require('./homepage')
 var aboutpage = require('./aboutpage')
+
 var models = require('./models/models')
+
+//directives
+var selfUploadImage = require('./directives/selfUploadImage/selfUploadImage.js')
 
 var angularMaterialCss = require('angular-material/angular-material.css')
 
@@ -26,9 +32,9 @@ var angularMaterialCss = require('angular-material/angular-material.css')
 //富文本
 window.rangy = require('rangy')
 window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore')
-require('../util/textangular/dist/textAngular-sanitize.min')
-require('../util/textangular/dist/textAngular.css')
-require('../util/textAngular')
+require('./directives/textangular/dist/textAngular-sanitize.min')
+require('./directives/textangular/dist/textAngular.css')
+require('./directives/textAngular')
 require('font-awesome/css/font-awesome.css')
 
 
@@ -36,7 +42,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
   uiRouter, ngCookies,
   ngMaterial, ngMessages, ngResource, article.name, login.name, frame.name,
   category.name,
-  homepage.name, aboutpage.name, layout.name, models.name
+  homepage.name, aboutpage.name, layout.name, models.name, selfUploadImage.name
 ])
 
 .config(function($httpProvider, $locationProvider, $stateProvider,
@@ -87,6 +93,33 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
     }
   })
 
+  .state('home.category.setting', {
+    url: '/setting'
+  })
+
+
+  .state('home.category.setting.create', {
+    url: '/create',
+    views: {
+      'submain@home.category': {
+        templateUrl: 'category/templates/category.setting.html',
+        controller: 'CategorySettingCreateCtrl'
+      }
+    }
+  })
+
+
+  .state('home.category.setting.edit', {
+    url: '/:id',
+    views: {
+      'submain@home.category': {
+        templateUrl: 'category/templates/category.setting.html',
+        controller: 'CategorySettingEditCtrl'
+      }
+    }
+  })
+
+
   .state('home.category.articles', {
     url: '/:id',
     views: {
@@ -96,6 +129,8 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
       }
     }
   })
+
+
 
   .state('home.article', {
     url: '/article',
@@ -150,9 +185,6 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
     }
   })
 
-
-
-
   $urlRouterProvider.otherwise('/')
 })
 
@@ -166,8 +198,8 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
         $state.go('login')
       }
     })
-  $rootScope.toUrl = function(url) {
-    $state.go(url)
+  $rootScope.toUrl = function(url, params, options) {
+    $state.go(url, params, options)
   }
 })
 

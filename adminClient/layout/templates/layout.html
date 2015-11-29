@@ -1,14 +1,10 @@
-<div class="self-layout-edit"  layout-padding>
+<div class="self-layout-edit" layout-padding>
   <h3>框架</h3>
   <md-input-container>
     <label>Html Title</label>
     <input ng-model="layout.htmlTitle">
   </md-input-container>
-  <button accept="image/*" class="self-image-placeholder"
-    ng-style="imageLogoPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
-    ngf-select="uploadLogoImage($file)" type="file">
-    <span ng-show="!layout.logoImg">上传图片</span>
-  </button>
+  <self-upload-image image-url="layout.logoImg"></self-upload-image>
   <md-input-container>
     <label>Logo 图片</label>
     <input ng-model="layout.logoImg">
@@ -29,24 +25,15 @@
   <h3>标题区域</h3>
   <md-input-container>
     <label>描述</label>
-    <input ng-model="layout.slideHeader.description">
+    <textarea ng-model="layout.slideHeader.description"></textarea>
   </md-input-container>
-  <!-- <p class="md-subheader">描述</p>
-  <textarea ng-model="layout.slideHeader.description" cols="30" rows="10"></textarea> -->
-  <button accept="image/*" class="self-image-placeholder"
-    ng-style="imageBackPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
-    ngf-select="uploadBgcImage($file)" type="file">
-    <span ng-show="!layout.slideHeader.bigImgUrl">上传图片</span>
-  </button>
+  <self-upload-image image-url="layout.slideHeader.bigImgUrl"></self-upload-image>
   <md-input-container>
     <label>背景图</label>
     <input ng-model="layout.slideHeader.bigImgUrl">
   </md-input-container>
-  <button accept="image/*" class="self-image-placeholder"
-    ng-style="imageRightPlaceholderStyle" ngf-max-height="1000" ngf-max-size="10MB"
-    ngf-select="uploadRighImage($file)" type="file">
-    <span ng-show="!layout.slideHeader.smallImgUrl">上传图片</span>
-  </button>
+  <self-upload-image image-url="layout.slideHeader.smallImgUrl"></self-upload-image>
+
   <md-input-container>
     <label>右侧图片</label>
     <input ng-model="layout.slideHeader.smallImgUrl">
@@ -63,7 +50,8 @@
   </md-input-container>
   <div layout-align="end center" layout="row">
 
-    <md-button class="md-raised self-publish-button-setting md-primary" flex ng-click="update()">
+    <md-button class="md-raised self-publish-button-setting md-primary" flex
+      ng-click="update()">
       更新
     </md-button>
   </div>
