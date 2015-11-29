@@ -102,13 +102,15 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     $scope.article.content = ''
     $scope.article.tags = []
     $scope.article.relationArticle = []
+    $scope.article.category = $state.params.category._id
+    $scope.selectedItem =  $state.params.category
 
     //拿出分类及填充combobox
     Category.query(function(categorys) {
       $scope.categorys = _.toArray(categorys)
+
       Article.query(function(articles) {
         $scope.articles = _.toArray(articles)
-
         $scope.categorys.forEach(function(category) {
           category.showArticle = true
           var categoryArticles = _.filter($scope.articles, function(n) {
@@ -116,11 +118,12 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
           })
           category.categoryArticles = _.isArray(categoryArticles) ?
             categoryArticles : [categoryArticles]
-
         })
       })
+
     })
   }
+
   $scope.init()
 
   $scope.create = function() {

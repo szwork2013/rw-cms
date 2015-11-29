@@ -106,6 +106,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
         controller: 'CategorySettingCreateCtrl'
       }
     }
+
   })
 
 
@@ -143,6 +144,9 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
         templateUrl: 'article/templates/article.edit.html',
         controller: 'ArticleCreateCtrl'
       }
+    },
+    params:{
+      category:null
     }
   })
 
