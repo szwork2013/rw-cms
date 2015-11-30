@@ -2,7 +2,7 @@ var models = require('../models')
 var Author = models.Author
 var sign = require('../common/sign')
 
-var key = require('./secrectConfig').passwordKey
+var key = require('../secretConfig').passwordKey
 
 var login = {
   login: function*(next) {

@@ -17,7 +17,7 @@ var app = koa();
 //登陆
 var session = require('koa-generic-session')
 app.use(session())
-app.keys = require('./secrectConfig').appKeys
+app.keys = require('./secretConfig').appKeys
 
 
 //查询字符串解析
