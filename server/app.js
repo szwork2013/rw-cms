@@ -17,12 +17,13 @@ var app = koa();
 //登陆
 var session = require('koa-generic-session')
 app.use(session())
-app.keys = ['1231233123']
+app.keys = require('./secrectConfig').appKeys
 
 
 //查询字符串解析
 qs(app)
-  //静态资源
+
+//静态资源
 config.staticPaths.forEach(function(staticPath) {
   app.use(static(staticPath, {
     index: 'aa'
@@ -40,8 +41,8 @@ mongoose.connect(config.mongoStr)
   //初始化模板引擎
 app.use(views('../commonClient/jade', {
   default: 'jade',
-  map:{
-    html:'jade'
+  map: {
+    html: 'jade'
   }
 }))
 
