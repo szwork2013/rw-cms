@@ -195,12 +195,13 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
     }
   })
 
-  //TODO:登陆重定向
+  //登陆重定向
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams) {
       if($rootScope.isLogin || toState.name === 'login') {
         $rootScope.isLogin = false
       } else {
+        //先验证再进行页面跳转
         event.preventDefault()
         Login.authUser(toState, toParams, function(res) {
           if(res.status !== 401) {
