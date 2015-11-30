@@ -1,27 +1,30 @@
-<md-content layout-padding layout-align="center center" layout="column">
-  <div class="own-login-part">
-    <form novalidate name="loginForm">
-      <md-input-container>
-        <label>用户名</label>
-        <input name="name" required ng-model="author.name">
+<div  style="height:100%" layout="row" layout-align="center center">
+  <md-content layout-align="center center" layout-padding layout="column">
+    <div class="own-login-part">
+      <form name="loginForm" novalidate>
+        <md-input-container>
+          <label>用户名</label>
+          <input name="name" ng-model="author.name" required>
 
-        <div ng-messages="loginForm.name.$error" ng-show="loginForm.name.$touched">
-          <div ng-message="required">This is required</div>
+          <div ng-if="loginForm.name.$touched" ng-messages="loginForm.name.$error">
+            <div ng-message="required">请填写用户名</div>
+          </div>
+
+        </md-input-container>
+
+        <md-input-container>
+          <label>密码</label>
+          <input name="password" ng-model="author.password" required type="password">
+
+          <div ng-if="loginForm.password.$touched" ng-messages="loginForm.password.$error">
+            <div ng-message="required">请填写密码</div>
+          </div>
+        </md-input-container>
+        <div layout-align="center center" layout="row">
+          <md-button class="md-raised md-primary" ng-click="login()" ng-disabled="!loginForm.$valid">Login</md-button>
+          <md-button class="md-raised">Register</md-button>
         </div>
-
-      </md-input-container>
-      <md-input-container>
-        <label>密码</label>
-        <input name="password" required ng-model="author.password" type="password">
-
-        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched">
-          <div ng-message="required">This is required</div>
-        </div>
-      </md-input-container>
-      <div layout="row" layout-align="center center">
-        <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid" ng-click="login()">Login</md-button>
-        <md-button class="md-raised">Register</md-button>
-      </div>
-    </form>
-  </div>
-</md-content>
+      </form>
+    </div>
+  </md-content>
+</div>
