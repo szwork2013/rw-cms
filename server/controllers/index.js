@@ -17,29 +17,14 @@ var adminRouter = new Router({
 
 
 adminRouter.get('/', function*(next) {
-  if(this.cookies.get('isLogin') === undefined) {
-    this.cookies.set('isLogin', false, {
-      sign: false,
-      httpOnly: false
-    })
-  }
   yield send(this, config.staticPaths[1] + '/index.html')
 })
 
-//TODO:拦截静态资源
-adminRouter.use(
-  function*(next) {
-    if(!this.session.isLogin) {
-      var u = this.request.originalUrl.split('/')
-      if(u[1] == 'login' || u[2] == 'login') {
-        yield next
-      } else {
-        this.response.status = 401
-      }
-    } else {
-      yield next
-    }
-  })
+adminRouter.use(login.authUser)
+adminRouter.get('/auth-user', function*(next) {
+  this.body = 'auth is ok'
+  yield next
+})
 
 //article
 adminRouter.get('/article', article.getAll, article.admin.getAll)
@@ -85,15 +70,7 @@ adminRouter.del('/author/:id', author.deleteById, author.admin.deleteById)
 
 //登陆
 adminRouter.post('/login', login.login)
-adminRouter.post('/logout', function*(next) {
-  this.session = null
-  this.body = 'logout'
-  this.cookies.set('isLogin', false, {
-    sign: false,
-    httpOnly: false
-  })
-  yield next
-})
+adminRouter.post('/logout', login.logout)
 
 //上传
 adminRouter.post('/upload', function*(next) {

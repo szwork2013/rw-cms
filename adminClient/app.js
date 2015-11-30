@@ -24,11 +24,6 @@ var selfUploadImage = require('./directives/selfUploadImage/selfUploadImage.js')
 
 var angularMaterialCss = require('angular-material/angular-material.css')
 
-//markdown
-//var ngSanitize = require('angular-sanitize')
-//showdown = require('showdown')
-//require('ng-showdown')
-
 //富文本
 window.rangy = require('rangy')
 window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore')
@@ -145,8 +140,8 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
         controller: 'ArticleCreateCtrl'
       }
     },
-    params:{
-      category:null
+    params: {
+      category: null
     }
   })
 
@@ -192,16 +187,30 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
   $urlRouterProvider.otherwise('/')
 })
 
-.run(function($rootScope, $cookies, $state) {
+.run(function($rootScope, $cookies, $state, Login) {
+  $rootScope.isLogin = false
+  Login.authUser(undefined,undefined,function(res){
+    if(res.status !== 401) {
+      $rootScope.isLogin = true
+    }
+  })
+
   //TODO:登陆重定向
   $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams) {
-
-      if(!$cookies.get('isLogin') && toState.name !== 'login') {
-        event.preventDefault();
-        $state.go('login')
+      if($rootScope.isLogin || toState.name === 'login') {
+        $rootScope.isLogin = false
+      } else {
+        event.preventDefault()
+        Login.authUser(toState, toParams, function(res) {
+          if(res.status !== 401) {
+            $rootScope.isLogin = true
+            $state.go(toState.name, toParams)
+          }
+        })
       }
     })
+
   $rootScope.toUrl = function(url, params, options) {
     $state.go(url, params, options)
   }
