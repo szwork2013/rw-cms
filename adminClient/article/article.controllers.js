@@ -87,7 +87,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
   })
 
 
-//---------------------
+//新建
 .controller('ArticleCreateCtrl', function($scope, $controller, $timeout, Upload,
   $stateParams, Article, Category, $state, $window) {
   //继承
@@ -102,8 +102,8 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     $scope.article.content = ''
     $scope.article.tags = []
     $scope.article.relationArticle = []
-    $scope.article.category = $state.params.category._id
-    $scope.selectedItem =  $state.params.category
+    $scope.article.category = $state.params.category === null ? null:$state.params.category._id
+    $scope.selectedItem = $state.params.category
 
     //拿出分类及填充combobox
     Category.query(function(categorys) {

@@ -4,13 +4,16 @@
     <md-list>
       <md-subheader>文章</md-subheader>
       <md-divider></md-divider>
-      <md-list-item ng-click="preview(article);$event.stopPropagation()" ng-repeat="article in articles">
+      <md-list-item ng-click="preview(article);$event.stopPropagation()"
+        ng-repeat="article in articles">
         <p>{{article.title}}</p>
-        <md-button class="md-icon-button  md-primary">
-          <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg" ui-sref="home.article.edit({id:article._id})"></md-icon>
+        <md-button class="md-icon-button  md-primary"
+          ui-sref="home.article.edit({id:article._id})">
+          <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg"></md-icon>
         </md-button>
-        <md-button class="md-icon-button md-primary">
-          <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(article);$event.stopPropagation()"></md-icon>
+        <md-button class="md-icon-button md-primary"
+          ng-click="del(article);$event.stopPropagation()">
+          <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg"></md-icon>
         </md-button>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
@@ -22,15 +25,17 @@
     </div>
   </md-content>
 
-  <md-sidenav class="md-sidenav-right md-whiteframe-z2 self-preview-article" md-component-id="right">
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2 self-preview-article"
+    md-component-id="right">
     <md-toolbar class="md-theme-light">
       <div class="md-toolbar-tools">
         <h1 class="md-toolbar-tools">预览</h1>
         <md-button class="md-icon-button">
-          <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg" ui-sref="home.article.edit({id:previewArticle._id})"></md-icon>
+          <md-icon aria-label="edit" md-svg-src="../fonts/icons/ic_edit_24px.svg"
+            ui-sref="home.article.edit({id:previewArticle._id})"></md-icon>
         </md-button>
-        <md-button class="md-icon-button">
-          <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg" ng-click="del(previewArticle)"></md-icon>
+        <md-button class="md-icon-button" ng-click="del(previewArticle)">
+          <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
