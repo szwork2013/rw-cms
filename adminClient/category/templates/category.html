@@ -2,8 +2,8 @@
   <!--左侧分类导航-->
   <md-list class="self-category-nav" flex="20">
     <md-list-item>
-      <md-subheader class="md-no-sticky" flex="60">分类</md-subheader>
-
+      <md-subheader class="md-no-sticky">分类</md-subheader>
+      <span flex></span>
       <md-button class="md-icon-button md-primary" ng-click="toggleSetting()">
         <md-icon aria-label="setting" md-svg-src="../fonts/icons/ic_settings_24px.svg"></md-icon>
       </md-button>
@@ -15,16 +15,16 @@
 
     <md-divider></md-divider>
     <md-list-item ng-repeat="category in categorys">
-      <md-button ng-click="toUrl(titleTarget,{id:category._id})">
+      <md-button ng-click="toUrl(titleTarget,{id:category._id})" flex="75">
         {{category.name}}
       </md-button>
-      <md-button class="md-icon-button md-primary" flex="20" ng-click="deleteCategory(category)"
+      <md-button class="md-icon-button md-primary" ng-click="deleteCategory(category)"
         ng-show="isSetting">
         <md-icon aria-label="delete" md-svg-src="../fonts/icons/ic_delete_24px.svg"></md-icon>
       </md-button>
 
-      <md-button class="md-icon-button" flex="20" ng-click="toUrl('home.article.create',{category:category})"
-        ng-show="!isSetting">
+      <md-button class="md-icon-button"
+        ng-click="toUrl('home.article.create',{category:category})" ng-show="!isSetting">
         <md-icon aria-label="add" md-svg-src="../fonts/icons/ic_note_add_24px.svg"></md-icon>
       </md-button>
     </md-list-item>

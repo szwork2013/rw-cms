@@ -6,7 +6,8 @@
     "client-start": "webpack-dev-server --content-base-target http://localhost:3000 --hot --inline ",
     "server-debug": "node --debug ./server/app.js",
     "server-run": "node ./server/app.js",
-    "node-debug": "node-debug --web-port 8090 --save-live-edit true  ./server/app.js"
+    "node-debug": "node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
+    "mongo-start":"mongod --auth"
   },
   "dependencies": {
     "co": "^4.6.0",
