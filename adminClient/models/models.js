@@ -1,4 +1,5 @@
 var angular = require('angular')
+var staticContent = require('../../server/common/message').staticContent
 
 module.exports = angular.module('models', [])
   //认证全局拦截
@@ -85,7 +86,7 @@ module.exports = angular.module('models', [])
     .method)
 })
 
-.factory('Login', function($http, $state) {
+.factory('Login', function($http, $state, Const) {
   return {
     toState: {
       name: 'home'
@@ -94,25 +95,30 @@ module.exports = angular.module('models', [])
     post: function(doc, cb) {
       var that = this
       $http.post('/admin/login', doc).then(function(res) {
-        if(res.data === 'OK') {
-          $state.go('home')
+        cb(res)
+        if(res.data.message === Const.LOGIN_SUCCESS) {
+          $state.go(that.toState.name, that.toParams)
         }
       })
     },
-    logout: function() {
+    logout: function(cb) {
       $http.post('/admin/logout', null).then(function(res) {
-        if(res.data === 'OK') {
+        cb(res)
+        if(res.data.message === Const.LOGOUT_SUCCESS) {
           $state.go('login')
         }
       })
     },
     authUser: function(toState, toParams, success, error) {
-      if(toState !== undefined) {
+      //如果tostate不为空, 目标不是login, 则返回登录前页面
+      if(toState !== undefined && toState.name !== 'login') {
         this.toState = toState
+
+        if(toParams !== undefined) {
+          this.toParams = toParams
+        }
       }
-      if(toParams !== undefined) {
-        this.toParams = toParams
-      }
+
       $http.get('/admin/auth-user').then(function(res) {
         if(res.status === 401) {
           $state.go('login')
@@ -121,4 +127,8 @@ module.exports = angular.module('models', [])
       })
     },
   }
+})
+
+.factory('Const', function() {
+  return staticContent
 })

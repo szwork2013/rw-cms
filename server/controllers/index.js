@@ -79,7 +79,6 @@ adminRouter.post('/upload', function*(next) {
   yield next
 })
 
-
 //公开页面--------------------------------------------
 router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
 router.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)

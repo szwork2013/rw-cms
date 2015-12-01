@@ -52,6 +52,21 @@ app.use(bodyParser())
 //挂载路由
 app.use(router.routes())
 
+app.use(function*(next) {
+  if(this.state.message !== undefined && this.body !== undefined) {
+
+    this.body.message = this.state.message
+    console.log(this.body)
+  }
+  if(this.state.message !== undefined && this.body === undefined) {
+    this.body = {
+      message: this.state.message
+    }
+  }
+  yield next
+
+})
+
 
 app.on('error', function(err) {
   console.log('server error', err)

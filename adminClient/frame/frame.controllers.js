@@ -8,6 +8,8 @@ module.exports = angular.module('frame.controllers', [])
       $mdOpenMenu(ev)
     }
     $scope.logout = function() {
-      Login.logout()
+      Login.logout(function(res) {
+        $scope.showToast(res.data.message)
+      })
     }
   })

@@ -13,6 +13,7 @@ module.exports = angular.module('category.controllers', [])
         _.remove($scope.categorys, function(n) {
           return n._id == doc._id
         })
+        // $scope.showToast(res.data.message)
       }, function(err) {
         console.log(err)
       })
@@ -59,6 +60,7 @@ module.exports = angular.module('category.controllers', [])
       _.remove($scope.articles, function(n) {
         return n._id == doc._id
       })
+      // $scope.showToast(res.data.message)
     }, function(err) {
       console.log(err)
     })
@@ -105,7 +107,9 @@ module.exports = angular.module('category.controllers', [])
   $scope.update = function() {
     Category.update({
       id: $scope.category._id
-    }, $scope.category, function(data) {}, function(err) {
+    }, $scope.category, function(doc) {
+      // $scope.showToast(res.data.message)
+    }, function(err) {
       console.log(err)
     })
   }
@@ -114,12 +118,12 @@ module.exports = angular.module('category.controllers', [])
 })
 
 
-.controller('CategorySettingCreateCtrl', function($scope, Category, $stateParams,$state) {
+.controller('CategorySettingCreateCtrl', function($scope, Category, $stateParams, $state) {
   $scope.submitButtonText = '新建'
   $scope.category = new Category()
   $scope.update = function() {
-    $scope.category.$save(function(data) {
-      $state.go('home.category',{},{reload:true})
+    $scope.category.$save(function(doc) {
+      // $scope.showToast(res.data.message)
     }, function(err) {
       console.log(err)
     })

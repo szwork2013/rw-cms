@@ -187,9 +187,10 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
   $urlRouterProvider.otherwise('/')
 })
 
-.run(function($rootScope, $cookies, $state, Login) {
+.run(function($rootScope, $cookies, $state, Login, $mdToast) {
+  //认证
   $rootScope.isLogin = false
-  Login.authUser(undefined,undefined,function(res){
+  Login.authUser(undefined, undefined, function(res) {
     if(res.status !== 401) {
       $rootScope.isLogin = true
     }
@@ -212,8 +213,20 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
       }
     })
 
+  //包装state.go
   $rootScope.toUrl = function(url, params, options) {
     $state.go(url, params, options)
+  }
+
+  //显示消息
+  $rootScope.showToast = function(message) {
+    console.log(message)
+    $mdToast.show(
+      $mdToast.simple()
+      .content(message)
+      .position('top right')
+      .hideDelay(3000)
+    )
   }
 })
 

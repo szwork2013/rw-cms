@@ -13,9 +13,10 @@ article.admin.updateById = function*(next) {
   _.forEach(this.request.body, function(n, key) {
     that.state.doc[key] = n
   })
-  that.state.doc.updateDate =  new Date()
+  that.state.doc.updateDate = new Date()
   try {
     this.state.doc = yield this.state.doc.save().exec()
+    this.state.message = staticContent.UPDATE_SUCCESS
     yield next
   } catch(err) {
     console.log(err)

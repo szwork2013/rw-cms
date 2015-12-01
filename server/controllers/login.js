@@ -1,6 +1,7 @@
 var models = require('../models')
 var Author = models.Author
 var sign = require('../common/sign')
+var staticContent = require('../common/message').staticContent
 
 var key = require('../secretConfig').passwordKey
 
@@ -13,17 +14,17 @@ var login = {
 
     if(user !== null && user.password == this.request.body.password) {
       this.session.isLogin = true
-      this.body = 'OK'
+      this.state.message = staticContent.LOGIN_SUCCESS
     } else {
       this.session.isLogin = false
-      this.body = 'Fail'
+      this.state.message = staticContent.LOGIN_FAIL
     }
     yield next
   },
 
   logout: function*(next) {
     this.session = null
-    this.body = 'OK'
+    this.state.message = staticContent.LOGOUT_SUCCESS
     yield next
   },
 

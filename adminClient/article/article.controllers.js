@@ -102,7 +102,8 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     $scope.article.content = ''
     $scope.article.tags = []
     $scope.article.relationArticle = []
-    $scope.article.category = $state.params.category === null ? null:$state.params.category._id
+    $scope.article.category = $state.params.category === null ? null : $state.params
+      .category._id
     $scope.selectedItem = $state.params.category
 
     //拿出分类及填充combobox
@@ -128,12 +129,9 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
 
   $scope.create = function() {
     $scope.article.category = $scope.selectedItem._id
-    $scope.article.$save(function(data) {
-      $state.go('home.category.articles', {
-        id: $scope.article.category
-      })
-    }, function(err) {
-      console.log(err)
+    $scope.article.$save(function(doc) {
+      console.log(doc)
+      $scope.showToast(doc.message)
     })
   }
 
@@ -196,10 +194,8 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     $scope.article.category = $scope.selectedItem._id
     Article.update({
       id: $scope.article._id
-    }, $scope.article, function(data) {
-      $state.go('home.category.articles', {
-        id: $scope.article.category
-      })
+    }, $scope.article, function(doc) {
+      // $scope.showToast(res.data.message)
     }, function(err) {
       console.log(err)
     })
