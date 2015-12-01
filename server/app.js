@@ -52,11 +52,13 @@ app.use(bodyParser())
 //挂载路由
 app.use(router.routes())
 
+//返回响应信息
 app.use(function*(next) {
   if(this.state.message !== undefined && this.body !== undefined) {
-
-    this.body.message = this.state.message
-    console.log(this.body)
+    if(this.body._doc !== undefined)
+      this.body._doc.message = this.state.message
+    else
+      this.body.message = this.state.message
   }
   if(this.state.message !== undefined && this.body === undefined) {
     this.body = {

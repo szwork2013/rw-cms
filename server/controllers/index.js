@@ -20,8 +20,13 @@ adminRouter.get('/', function*(next) {
   yield send(this, config.staticPaths[1] + '/index.html')
 })
 
-adminRouter.use(login.authUser)
-adminRouter.get('/auth-user', function*(next) {
+
+//如果加入''参数,会命中admin的所有网页,初始index.html读取也无法完成
+// adminRouter.use('',login.authUser)
+ adminRouter.use(login.authUser)
+
+
+adminRouter.get('/auth-user', login.authUser, function*(next) {
   this.body = 'auth is ok'
   yield next
 })
@@ -78,6 +83,8 @@ adminRouter.post('/upload', function*(next) {
   this.status = 200
   yield next
 })
+
+
 
 //公开页面--------------------------------------------
 router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)

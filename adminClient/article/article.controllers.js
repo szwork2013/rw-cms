@@ -132,6 +132,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     $scope.article.$save(function(doc) {
       console.log(doc)
       $scope.showToast(doc.message)
+      $state.go('home.article.edit',{id:doc._id})
     })
   }
 
@@ -195,7 +196,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     Article.update({
       id: $scope.article._id
     }, $scope.article, function(doc) {
-      // $scope.showToast(res.data.message)
+      $scope.showToast(doc.message)
     }, function(err) {
       console.log(err)
     })

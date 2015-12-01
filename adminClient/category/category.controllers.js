@@ -13,7 +13,7 @@ module.exports = angular.module('category.controllers', [])
         _.remove($scope.categorys, function(n) {
           return n._id == doc._id
         })
-        // $scope.showToast(res.data.message)
+        $scope.showToast(doc.message)
       }, function(err) {
         console.log(err)
       })
@@ -60,7 +60,7 @@ module.exports = angular.module('category.controllers', [])
       _.remove($scope.articles, function(n) {
         return n._id == doc._id
       })
-      // $scope.showToast(res.data.message)
+      $scope.showToast(doc.message)
     }, function(err) {
       console.log(err)
     })
@@ -108,7 +108,7 @@ module.exports = angular.module('category.controllers', [])
     Category.update({
       id: $scope.category._id
     }, $scope.category, function(doc) {
-      // $scope.showToast(res.data.message)
+      $scope.showToast(doc.message)
     }, function(err) {
       console.log(err)
     })
@@ -123,7 +123,8 @@ module.exports = angular.module('category.controllers', [])
   $scope.category = new Category()
   $scope.update = function() {
     $scope.category.$save(function(doc) {
-      // $scope.showToast(res.data.message)
+      $scope.showToast(doc.message)
+      $state.go('home.category.setting.edit',{id:doc._id})
     }, function(err) {
       console.log(err)
     })

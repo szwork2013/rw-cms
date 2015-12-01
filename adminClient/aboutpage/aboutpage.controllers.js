@@ -7,7 +7,9 @@ module.exports = angular.module('aboutpage.controllers', [])
     $scope.update = function() {
       Aboutpage.update({
         id: $scope.aboutpage._id
-      }, $scope.aboutpage, function(data) {}, function(err) {
+      }, $scope.aboutpage, function(doc) {
+        $scope.showToast(doc.message) 
+      }, function(err) {
         console.log(err)
       })
     }

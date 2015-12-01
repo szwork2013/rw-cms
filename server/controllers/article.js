@@ -2,12 +2,13 @@ var models = require('../models')
 var base = require('./base')
 var Article = models.Article
 var _ = require('lodash')
+var staticContent = require('../common/message')
 
 var article = base.init(Article)
 
 article.admin = base.boundAdmin()
 
-article.admin.updateById = function*(next) {
+article.updateById = function*(next) {
   this.state.doc = yield Article.findById(this.params.id).exec()
   var that = this
   _.forEach(this.request.body, function(n, key) {
@@ -15,7 +16,7 @@ article.admin.updateById = function*(next) {
   })
   that.state.doc.updateDate = new Date()
   try {
-    this.state.doc = yield this.state.doc.save().exec()
+    this.state.doc = yield this.state.doc.save()
     this.state.message = staticContent.UPDATE_SUCCESS
     yield next
   } catch(err) {

@@ -7,7 +7,9 @@ module.exports = angular.module('homepage.controllers', [])
     $scope.update = function() {
       Homepage.update({
         id: $scope.homepage._id
-      }, $scope.homepage, function(data) {}, function(err) {
+      }, $scope.homepage, function(doc) {
+        $scope.showToast(doc.message)
+      }, function(err) {
         console.log(err)
       })
     }

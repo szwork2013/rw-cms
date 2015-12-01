@@ -38,7 +38,9 @@ module.exports = angular.module('layout.controllers', [])
     $scope.update = function() {
       Layout.update({
         id: $scope.layout._id
-      }, $scope.layout, function(data) {}, function(err) {
+      }, $scope.layout, function(doc) {
+        $scope.showToast(doc.message)
+      }, function(err) {
         console.log(err)
       })
     }

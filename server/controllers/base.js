@@ -51,7 +51,7 @@ module.exports = {
           that.state.doc[key] = n
         })
         try {
-          this.state.doc = yield this.state.doc.save().exec()
+          this.state.doc = yield this.state.doc.save()
           yield next
         } catch(err) {
           console.log(err)
