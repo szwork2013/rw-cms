@@ -73,9 +73,15 @@ adminRouter.put('/author/:id', author.updateById, author.admin.updateById)
 adminRouter.del('/author/:id', author.deleteById, author.admin.deleteById)
 
 
+//更新自己设置
+adminRouter.post('/upload-self-setting',author.uploadSelfSetting)
+adminRouter.get('/get-self-setting',author.getSelfSetting)
+
+
 //登陆
 adminRouter.post('/login', login.login)
 adminRouter.post('/logout', login.logout)
+
 
 //上传
 adminRouter.post('/upload', function*(next) {

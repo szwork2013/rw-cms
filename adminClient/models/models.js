@@ -81,12 +81,40 @@ module.exports = angular.module('models', [])
     .method)
 })
 
-.factory('Author', function($resource, ModelUtil) {
-  return $resource('/admin/author/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
+.factory('Author', function($resource, $http, ModelUtil, Const) {
+  var res = $resource('/admin/author/:id', ModelUtil.commonOpt.param, ModelUtil.commonOpt
     .method)
+
+  res.localName = ''
+
+  res.clean = function() {
+    this.name = ''
+  }
+
+  res.setLocalName = function(name) {
+    res.localName = name
+  }
+  res.uploadSelfSetting = function(author, cb) {
+    $http.post('/admin/upload-self-setting', author).then(function(response) {
+      if(response.data.message === Const.UPDATE_SUCCESS) {
+        res.setLocalName(response.data.name)
+      }
+      cb(response)
+    })
+  }
+
+  res.getSelfSetting = function(cb) {
+    $http.get('/admin/get-self-setting').then(function(response) {
+      res.setLocalName(response.data.name)
+      cb(response)
+    })
+  }
+
+  return res
 })
 
-.factory('Login', function($http, $state, Const) {
+
+.factory('Login', function($http, $state, Author, Const) {
   return {
     toState: {
       name: 'home'
@@ -97,6 +125,7 @@ module.exports = angular.module('models', [])
       $http.post('/admin/login', doc).then(function(res) {
         cb(res)
         if(res.data.message === Const.LOGIN_SUCCESS) {
+          Author.setLocalName(res.data.name)
           $state.go(that.toState.name, that.toParams)
         }
       })
@@ -105,6 +134,7 @@ module.exports = angular.module('models', [])
       $http.post('/admin/logout', null).then(function(res) {
         cb(res)
         if(res.data.message === Const.LOGOUT_SUCCESS) {
+          Author.clean()
           $state.go('login')
         }
       })
@@ -113,7 +143,6 @@ module.exports = angular.module('models', [])
       //如果tostate不为空, 目标不是login, 则返回登录前页面
       if(toState !== undefined && toState.name !== 'login') {
         this.toState = toState
-
         if(toParams !== undefined) {
           this.toParams = toParams
         }

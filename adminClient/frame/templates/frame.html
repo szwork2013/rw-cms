@@ -3,14 +3,14 @@
   <md-sidenav class="self-index-slidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
     <md-list>
       <md-list-item layout-padding>
-        <p class="md-headline ">admin</p>
+        <p class="md-headline ">{{username}}</p>
         <md-menu md-offset="-100 50">
           <md-button class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
             <md-icon md-menu-origin md-svg-src="../fonts/icons/ic_keyboard_arrow_down_24px.svg"></md-icon>
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
-              <md-button>
+              <md-button ui-sref="home.author">
                 个人设置
               </md-button>
             </md-menu-item>

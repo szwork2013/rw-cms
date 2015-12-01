@@ -13,6 +13,9 @@ var login = {
     }).exec()
 
     if(user !== null && user.password == this.request.body.password) {
+      this.session.user = user
+      user.password = null
+      this.body = user
       this.session.isLogin = true
       this.state.message = staticContent.LOGIN_SUCCESS
     } else {

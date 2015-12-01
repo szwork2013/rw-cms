@@ -1,0 +1,36 @@
+<md-content layout-align="center center" layout-padding layout="column">
+  <form name="registerForm" novalidate>
+    <div class="own-login-part">
+      <md-input-container>
+        <label>用户名</label>
+        <input name="name" ng-model="author.name" required>
+
+        <div ng-if="registerForm.name.$touched" ng-messages="registerForm.name.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>密码</label>
+        <input name="password" ng-model="author.password" required type="password">
+
+        <div ng-if="registerForm.password.$touched" ng-messages="registerForm.password.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="passwordSame">test</div>
+        </div>
+      </md-input-container>
+      <md-input-container>
+        <label>再次输入</label>
+        <input name="rePassword" ng-model="author.rePassword" password-same required
+          type="password">
+
+        <div ng-if="registerForm.rePassword.$touched" ng-messages="registerForm.rePassword.$error">
+          <div ng-message="required">This is required.</div>
+          <div ng-message="passwordSame">Must be same.</div>
+        </div>
+      </md-input-container>
+      <div layout-align="center center" layout="row">
+        <md-button class="md-raised" ng-click="submit()" ng-disabled="!registerForm.$valid">OK</md-button>
+      </div>
+    </div>
+  </form>
+</md-content

@@ -5,7 +5,6 @@ module.exports = angular.module('login.controllers', [])
   .controller('LoginCtrl', function($scope, $state, $cookies, Login, Const) {
     $scope.login = function() {
       Login.post($scope.author, function(res) {
-        console.log(res)
         $scope.showToast(res.data.message)
       })
     }
