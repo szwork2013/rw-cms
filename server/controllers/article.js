@@ -32,9 +32,18 @@ article.common = {
       slug: this.params.slug
     }).exec()
     this.state.articleData = result[0]
+    var relationList = this.state.articleData.relationArticle.map(function(id) {
+      return Article.findById(id).exec()
+    })
+    var relationArticles = yield relationList
+    relationArticles.forEach(function(relation){
+      relation.background = relation.backgroundImage ? 'url('+relation.backgroundImage+')' :relation.backgroundColor
+    })
+
     yield this.render('article', {
       layoutData: this.state.layoutData,
-      articleData: this.state.articleData
+      articleData: this.state.articleData,
+      relationArticles:relationArticles
     })
   },
   getAll: function*(next) {

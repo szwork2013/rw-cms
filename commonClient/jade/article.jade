@@ -14,19 +14,21 @@ block content
     .area-content
       .description
         !{articleData.content}
-
-  .article.area.area-2
-    .area-title
-      h3 E-government service content
-      h3 瑞高电子政务服务内容
-    .area-grid
-      .row
-        -for(i=0;i<6;i++)
-          .col
-            a.card
-              .content-wrap
-                h2.title-main 电子政务
-                p.title-sub The electronic government affairs
-              .card-description
-                p 电子政务
-                p 电子政务将政务工作更有效、更精简
+  
+  if relationArticles.length !==0
+    .article.area.area-2
+      .area-title
+        //- h3 E-government service content
+        //- h3 瑞高电子政务服务内容
+        h3 相关内容
+      .area-grid
+        .row
+          -each relation in relationArticles
+            .col
+              a.card(href='/article/'+relation.slug)
+                .content-wrap(style='background:'+relation.background)
+                  h2.title-main #{relation.title}
+                  p.title-sub #{relation.titles.en}
+                .card-description
+                  p #{relation.title}
+                  p #{relation.description}
