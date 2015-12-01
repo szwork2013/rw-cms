@@ -11,6 +11,7 @@ mongoose.connect(config.mongoStr)
 
 co(function*() {
   var paw = buildPassword(secretConfig.passwordKey, secretConfig.app.password)
+  yield Author.remove().exec()
   var result= yield Author.create({
     name: secretConfig.app.name,
     password: paw
