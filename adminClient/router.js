@@ -1,5 +1,37 @@
 var angular = require('angular')
 
+/**
+ * 批量添加模板
+ * #require不能放在函数中
+ */
+var _templatePath = {}
+var _templates = ['frame', 'login', ['login', 'register'],
+  'category', ['category', 'category.setting'],
+  ['category', 'category.articles'],
+  ['article', 'article.edit'], 'layout', 'aboutpage', 'homepage', 'author'
+]
+for(var i in _templates) {
+  var _template = _templates[i]
+  var _name
+  if(typeof(_template) !== 'string') {
+    _name = getTemplatePath(_template[0], _template[1])
+    _templatePath[_template[1]] = require(_name)
+  } else {
+    _name = getTemplatePath(_template)
+    _templatePath[_template] = require(_name)
+  }
+}
+
+function getTemplatePath(templateName, other) {
+  if(other) {
+    return `./${templateName}/templates/${other}.html`
+  } else {
+    return `./${templateName}/templates/${templateName}.html`
+  }
+}
+
+
+
 module.exports = angular.module('router', [])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -8,7 +40,9 @@ module.exports = angular.module('router', [])
         url: '',
         views: {
           'out-wrapper': {
-            templateUrl: 'frame/templates/frame.html'
+            // templateUrl: 'frame/templates/frame.html'
+            templateUrl: _templatePath.frame,
+            controller: 'FrameCtrl'
           }
         }
       })
@@ -17,7 +51,7 @@ module.exports = angular.module('router', [])
         url: '/login',
         views: {
           'out-wrapper': {
-            templateUrl: 'login/templates/login.html',
+            templateUrl: _templatePath.login,
             controller: 'LoginCtrl'
           }
         }
@@ -26,7 +60,7 @@ module.exports = angular.module('router', [])
         url: '/register',
         views: {
           'out-wrapper': {
-            templateUrl: 'login/templates/register.html',
+            templateUrl: _templatePath.register,
             controller: 'RegisterCtrl'
           }
         }
@@ -36,7 +70,7 @@ module.exports = angular.module('router', [])
       url: '/category',
       views: {
         'main': {
-          templateUrl: 'category/templates/category.html',
+          templateUrl: _templatePath.category,
           controller: 'CategoryCtrl'
         }
       }
@@ -51,7 +85,7 @@ module.exports = angular.module('router', [])
       url: '/create',
       views: {
         'submain@home.category': {
-          templateUrl: 'category/templates/category.setting.html',
+          templateUrl: _templatePath['category.setting'],
           controller: 'CategorySettingCreateCtrl'
         }
       }
@@ -63,7 +97,7 @@ module.exports = angular.module('router', [])
       url: '/:id',
       views: {
         'submain@home.category': {
-          templateUrl: 'category/templates/category.setting.html',
+          templateUrl: _templatePath['category.setting'],
           controller: 'CategorySettingEditCtrl'
         }
       }
@@ -74,7 +108,7 @@ module.exports = angular.module('router', [])
       url: '/:id',
       views: {
         'submain': {
-          templateUrl: 'category/templates/category.articles.html',
+          templateUrl: _templatePath['category.articles'],
           controller: 'CategoryArticlesCtrl'
         }
       }
@@ -90,7 +124,7 @@ module.exports = angular.module('router', [])
       url: '/create',
       views: {
         'main@home': {
-          templateUrl: 'article/templates/article.edit.html',
+          templateUrl: _templatePath['article.edit'],
           controller: 'ArticleCreateCtrl'
         }
       },
@@ -103,7 +137,7 @@ module.exports = angular.module('router', [])
         url: '/:id',
         views: {
           'main@home': {
-            templateUrl: 'article/templates/article.edit.html',
+            templateUrl: _templatePath['article.edit'],
             controller: 'ArticleEditCtrl'
           }
         }
@@ -112,7 +146,7 @@ module.exports = angular.module('router', [])
         url: '/layout',
         views: {
           'main': {
-            templateUrl: 'layout/templates/layout.html',
+            templateUrl: _templatePath.layout,
             controller: 'LayoutCtrl'
           }
         }
@@ -122,7 +156,7 @@ module.exports = angular.module('router', [])
       url: '/aboutpage',
       views: {
         'main': {
-          templateUrl: 'aboutpage/templates/aboutpage.html',
+          templateUrl: _templatePath.aboutpage,
           controller: 'AboutpageCtrl'
         }
       }
@@ -132,7 +166,7 @@ module.exports = angular.module('router', [])
       url: '/homepage',
       views: {
         'main': {
-          templateUrl: 'homepage/templates/homepage.html',
+          templateUrl: _templatePath.homepage,
           controller: 'HomepageCtrl'
         }
       }
@@ -142,7 +176,7 @@ module.exports = angular.module('router', [])
       url: '/author',
       views: {
         'main': {
-          templateUrl: 'author/templates/author.html',
+          templateUrl: _templatePath.author,
           controller: 'AuthorCtrl'
         }
       }

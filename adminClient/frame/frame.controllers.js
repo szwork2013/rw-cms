@@ -2,7 +2,7 @@ var angular = require('angular')
 var scss = require('./frame.scss')
 
 module.exports = angular.module('frame.controllers', [])
-  .controller('frameCtrl', function($scope, $http, Login, Author) {
+  .controller('FrameCtrl', function($scope, $http, Login, Author) {
     Author.getSelfSetting(function(res) {
       $scope.username = Author.localName
     })

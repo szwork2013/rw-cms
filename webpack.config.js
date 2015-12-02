@@ -23,6 +23,11 @@ module.exports = {
   },
   module: {
     loaders: [{
+      test: /\.html$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './adminClient')) +
+        '/!html'
+    }, {
       test: /\.js$/,
       loader: 'ng-annotate'
     }, {
