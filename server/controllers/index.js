@@ -17,13 +17,13 @@ var adminRouter = new Router({
 
 
 adminRouter.get('/', function*(next) {
-  yield send(this, config.staticPaths[1] + '/index.html')
+  yield send(this, config.staticPaths[0] + '/index.html')
 })
 
 
 //如果加入''参数,会命中admin的所有网页,初始index.html读取也无法完成
 // adminRouter.use('',login.authUser)
- adminRouter.use(login.authUser)
+adminRouter.use(login.authUser)
 
 
 adminRouter.get('/auth-user', login.authUser, function*(next) {
@@ -74,8 +74,8 @@ adminRouter.del('/author/:id', author.deleteById, author.admin.deleteById)
 
 
 //更新自己设置
-adminRouter.post('/upload-self-setting',author.uploadSelfSetting)
-adminRouter.get('/get-self-setting',author.getSelfSetting)
+adminRouter.post('/upload-self-setting', author.uploadSelfSetting)
+adminRouter.get('/get-self-setting', author.getSelfSetting)
 
 
 //登陆
