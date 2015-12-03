@@ -6,5 +6,6 @@ html
     title #{layoutData.htmlTitle}
   body
     block main
-    script(src='http://localhost:8080/webpack-dev-server.js')
-    script(type='text/javascript', src='/commonClient.js')
+    link(rel='stylesheet', href=layoutData.commonClient.css)
+    //- script(src='http://localhost:8080/webpack-dev-server.js')
+    script(type='text/javascript', src=layoutData.commonClient.js)

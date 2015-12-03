@@ -10,7 +10,6 @@
     <input ng-model="homepage.slideHeader.bigImgUrl">
   </md-input-container>
   <self-upload-image image-url="homepage.slideHeader.smallImgUrl"></self-upload-image>
-  </button>
   <md-input-container>
     <label>右侧图片</label>
     <input ng-model="homepage.slideHeader.smallImgUrl">
@@ -39,6 +38,7 @@
     <label>内容</label>
     <input ng-model="homepage.about.content">
   </md-input-container>
+  <self-upload-image image-url="homepage.about.imgUrl"></self-upload-image>
   <md-input-container>
     <label>图片</label>
     <input ng-model="homepage.about.imgUrl">
@@ -57,6 +57,7 @@
     <label>内容</label>
     <textarea ng-model="homepage.contect.content"></textarea>
   </md-input-container>
+  <self-upload-image image-url="homepage.contect.imgUrl"></self-upload-image>
   <md-input-container>
     <label>图片</label>
     <input ng-model="homepage.contect.imgUrl">

@@ -1,9 +1,5 @@
 var webpack = require('webpack')
 var path = require('path')
-
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
-
 // PATHS
 var commomClientPath = path.join(__dirname, 'commonClient')
 var adminClientPath = path.join(__dirname, 'adminClient')
@@ -16,9 +12,9 @@ module.exports = {
   debug: true,
   devtool: 'source-map',
   output: {
-    path: __dirname + '/public/dist',
-    filename: '[name].js',
-    sourceMapFilename: '[file].map',
+    path: __dirname + '/public',
+    filename: 'dist/[name].js',
+    sourceMapFilename: 'dist/[file].map',
     pathinfo: true
   },
   module: {
@@ -46,7 +42,4 @@ module.exports = {
       loader: "file-loader"
     }],
   },
-  plugins: [
-    new ExtractTextPlugin("[name].css")
-  ]
 }

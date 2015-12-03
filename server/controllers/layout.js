@@ -2,6 +2,7 @@ var models = require('../models')
 var Layout = models.Layout
 var Category = models.Category
 var base = require('./base')
+var config = require('../config')
 
 var layout = base.init(Layout)
 layout.admin = base.boundAdmin()
@@ -26,6 +27,9 @@ layout.admin.getAll = function*(next) {
 layout.common = {
   get: function*(next) {
     var layoutData = this.state.docs[0]
+    var obj = config.getLayoutStaticFile()
+    layoutData.commonClient = obj.commonClient
+    layoutData.adminClient = obj.adminClient
     yield setCategoryObjToLayout(layoutData)
 
     this.state.layoutData = layoutData
