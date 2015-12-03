@@ -9,7 +9,7 @@ var _templates = ['frame', 'login', ['login', 'register'],
   'category', ['category', 'category.setting'],
   ['category', 'category.articles'],
   ['article', 'article.edit'], 'layout', 'aboutpage', 'homepage'
-  // , 'author'
+  , 'author'
 ]
 for(var i in _templates) {
   var _template = _templates[i]
@@ -173,15 +173,15 @@ module.exports = angular.module('router', [])
       }
     })
 
-    // .state('home.author', {
-    //   url: '/author',
-    //   views: {
-    //     'main': {
-    //       templateUrl: _templatePath.author,
-    //       controller: 'AuthorCtrl'
-    //     }
-    //   }
-    // })
+    .state('home.author', {
+      url: '/author',
+      views: {
+        'main': {
+          templateUrl: _templatePath.author,
+          controller: 'AuthorCtrl'
+        }
+      }
+    })
 
 
     $urlRouterProvider.otherwise('/')

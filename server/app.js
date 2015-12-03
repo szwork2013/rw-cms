@@ -6,6 +6,8 @@ var path = require('path')
 var bodyParser = require('koa-bodyparser')
 var qs = require('koa-qs')
 var multer = require('koa-multer')
+var gzip = require('koa-gzip')
+
 
 var router = require('./controllers')
 var model = require('./models')
@@ -52,6 +54,7 @@ app.use(bodyParser())
 //挂载路由
 app.use(router.routes())
 
+
 //返回响应信息
 app.use(function*(next) {
   if(this.state.message !== undefined && this.body !== undefined) {
@@ -68,6 +71,8 @@ app.use(function*(next) {
   yield next
 
 })
+
+app.use(gzip())
 
 
 app.on('error', function(err) {

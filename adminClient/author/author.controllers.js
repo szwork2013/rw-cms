@@ -1,8 +1,7 @@
 var angular = require('angular')
 var style = require('./author.scss')
-
 module.exports = angular.module('author.controllers', [])
-  .controller('AuthorCtrl', function($scope,$log, $state, $cookies, Author) {
+  .controller('AuthorCtrl', function($scope, $log, $state, $cookies, Author) {
 
 
     Author.getSelfSetting(function(res) {
