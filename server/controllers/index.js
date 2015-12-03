@@ -103,7 +103,19 @@ adminRouter.post('/upload', function*(next) {
 router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
 router.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
 router.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
-router.get('/:slug', layout.getAll, layout.common.get, category.common.render)
+router.get('/:slug', function*(next) {
+  //控制slug 未被捕获的情况
+  var Category = require('../models').Category
+  var result = yield Category.find({
+    slug: this.params.slug
+  }).exec()
+  if(result && result.length !== 0) {
+    console.log(result)
+    yield next
+  } else {
+    this.response.status = 404
+  }
+}, layout.getAll, layout.common.get, category.common.render)
 
 
 router.use('', adminRouter.routes())

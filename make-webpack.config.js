@@ -43,12 +43,12 @@ module.exports = function(opt) {
       test: /\.scss$/,
       loader: 'style-loader!css-loader!sass-loader'
     },
-    urlLoader: {
-      test: /\.(ttf|woff2|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader'
-    },
+    // urlLoader: {
+    //   test: /\.(ttf|woff2|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    //   loader: 'url-loader'
+    // },
     fileLoader: {
-      test: /\.(png|jpg|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      test: /\.(png|jpg|eot|svg|ttf|woff2|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'file-loader?name=/dist/image/[name].[hash].[ext]'
     }
   }

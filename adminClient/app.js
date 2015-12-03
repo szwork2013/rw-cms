@@ -18,6 +18,7 @@ var homepage = require('./homepage')
 var aboutpage = require('./aboutpage')
 var author = require('./author')
 
+
 var models = require('./models/models')
 var router = require('./router')
 //directives
@@ -28,9 +29,12 @@ var angularMaterialCss = require('angular-material/angular-material.css')
 //富文本
 window.rangy = require('rangy')
 window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore')
-require('./directives/textangular/dist/textAngular-sanitize.min')
-require('./directives/textangular/dist/textAngular.css')
-require('./directives/textAngular')
+// require('./directives/textangular/dist/textAngular-sanitize.min')
+// require('./directives/textangular/dist/textAngular.css')
+// require('./directives/textAngular/dist/textAngular.min.js')
+require('textangular/dist/textAngular-sanitize.min')
+require('textangular/dist/textAngular.css')
+var textAngular = require('textAngular')
 require('font-awesome/css/font-awesome.css')
 
 
