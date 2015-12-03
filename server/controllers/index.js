@@ -22,6 +22,11 @@ adminRouter.get('/', function*(next) {
     .html))
 })
 
+adminRouter.get('/dev', function*(next) {
+  var config = require('../config')
+  yield send(this, path.resolve(config.staticPaths[0], './adminIndex-dev.html'))
+})
+
 
 //如果加入''参数,会命中admin的所有网页,初始index.html读取也无法完成
 // adminRouter.use('',login.authUser)

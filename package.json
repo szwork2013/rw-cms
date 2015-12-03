@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "client-dev": "webpack-dev-server --content-base-target http://localhost:3000 --hot --inline ",
-    "client-pro": "webpack --config webpack-production.config.js --progress --profile --colors",
+    "client-dev": "webpack-dev-server --config webpack-dev.config.js --content-base-target http://localhost:3000 --hot --inline ",
+    "client-production": "webpack --config webpack-production.config.js --progress --profile --colors",
     "server-debug": "node --debug ./server/app.js",
     "server-run": "node ./server/app.js",
     "node-debug": "node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
