@@ -3,7 +3,7 @@ var scss = require('./layout.scss')
 var _ = require('lodash')
 
 module.exports = angular.module('layout.controllers', [])
-  .controller('LayoutCtrl', function($scope, Category, Layout, Upload) {
+  .controller('LayoutCtrl', function($scope,$log, Category, Layout, Upload) {
     Layout.get(function(data) {
       $scope.layout = data
 
@@ -41,7 +41,7 @@ module.exports = angular.module('layout.controllers', [])
       }, $scope.layout, function(doc) {
         $scope.showToast(doc.message)
       }, function(err) {
-        console.log(err)
+        $log.log(err)
       })
     }
   })

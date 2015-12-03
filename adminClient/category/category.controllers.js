@@ -3,7 +3,7 @@ var scss = require('./category.scss')
 var _ = require('lodash')
 
 module.exports = angular.module('category.controllers', [])
-  .controller('CategoryCtrl', function($scope, Category) {
+  .controller('CategoryCtrl', function($scope,$log, Category) {
     $scope.categorys = Category.query()
 
     $scope.deleteCategory = function(category) {
@@ -15,7 +15,7 @@ module.exports = angular.module('category.controllers', [])
         })
         $scope.showToast(doc.message)
       }, function(err) {
-        console.log(err)
+        $log.log(err)
       })
     }
     $scope.isSetting = false
@@ -62,7 +62,7 @@ module.exports = angular.module('category.controllers', [])
       })
       $scope.showToast(doc.message)
     }, function(err) {
-      console.log(err)
+      $log.log(err)
     })
   }
 
@@ -99,7 +99,7 @@ module.exports = angular.module('category.controllers', [])
   }
 })
 
-.controller('CategorySettingEditCtrl', function($scope, Category, $stateParams) {
+.controller('CategorySettingEditCtrl', function($scope,$log, Category, $stateParams) {
   $scope.submitButtonText = '更新'
   $scope.category = Category.get({
     id: $stateParams.id
@@ -110,7 +110,7 @@ module.exports = angular.module('category.controllers', [])
     }, $scope.category, function(doc) {
       $scope.showToast(doc.message)
     }, function(err) {
-      console.log(err)
+      $log.log(err)
     })
   }
 
@@ -118,7 +118,7 @@ module.exports = angular.module('category.controllers', [])
 })
 
 
-.controller('CategorySettingCreateCtrl', function($scope, Category, $stateParams, $state) {
+.controller('CategorySettingCreateCtrl', function($scope,$log, Category, $stateParams, $state) {
   $scope.submitButtonText = '新建'
   $scope.category = new Category()
   $scope.update = function() {
@@ -126,7 +126,7 @@ module.exports = angular.module('category.controllers', [])
       $scope.showToast(doc.message)
       $state.go('home.category.setting.edit',{id:doc._id})
     }, function(err) {
-      console.log(err)
+      $log.log(err)
     })
   }
 })

@@ -1,4 +1,5 @@
 var angular = require('angular')
+var templateUrl = require('./selfUploadImage.html')
 require('./selfUploadImage.scss')
 
 module.exports = angular.module('selfUploadImage', [])
@@ -6,10 +7,11 @@ module.exports = angular.module('selfUploadImage', [])
     return {
       restrict: 'E',
       scope: {
-        text : '=',
-        imageUrl:'='
+        text: '=',
+        imageUrl: '='
       },
-      templateUrl: './directives/selfUploadImage/selfUploadImage.html',
+      // templateUrl: './directives/selfUploadImage/selfUploadImage.html',
+      templateUrl: templateUrl,
       link: function(scope, element, attrs) {
         if(typeof(attrs.text) === 'undefined')
           scope.text = '上传图片'
@@ -28,7 +30,7 @@ module.exports = angular.module('selfUploadImage', [])
             })
           }, function(response) {
             if(response.status > 0)
-              console.log(response.status + ': ' + response.data)
+              $log.log(response.status + ': ' + response.data)
           })
         }
 

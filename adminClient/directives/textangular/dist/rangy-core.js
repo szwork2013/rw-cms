@@ -126,7 +126,7 @@
 
     function consoleLog(msg) {
         if (typeof console != UNDEFINED && isHostMethod(console, "log")) {
-            console.log(msg);
+            $log.log(msg);
         }
     }
 

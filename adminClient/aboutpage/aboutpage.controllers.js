@@ -2,7 +2,7 @@ var angular = require('angular')
 var scss = require('./aboutpage.scss')
 
 module.exports = angular.module('aboutpage.controllers', [])
-  .controller('AboutpageCtrl', function($scope, Aboutpage) {
+  .controller('AboutpageCtrl', function($scope,$log, Aboutpage) {
     $scope.aboutpage = Aboutpage.get()
     $scope.update = function() {
       Aboutpage.update({
@@ -10,7 +10,7 @@ module.exports = angular.module('aboutpage.controllers', [])
       }, $scope.aboutpage, function(doc) {
         $scope.showToast(doc.message) 
       }, function(err) {
-        console.log(err)
+        $log.log(err)
       })
     }
   })

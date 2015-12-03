@@ -1163,7 +1163,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
             for(i = 0; i < _children.length; i++){
               var node = _children[i];
               var nodeName = node.nodeName.toLowerCase();
-              //console.log(nodeName);
+              //$log.log(nodeName);
               if(nodeName === '#comment') {
                 value += '<!--' + node.nodeValue + '-->';
               } else if(nodeName === '#text') {
@@ -1190,7 +1190,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
             }
           }
         }
-        //console.log(value);
+        //$log.log(value);
         return value;
       };
 

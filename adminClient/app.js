@@ -85,7 +85,6 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
 
   //显示消息
   $rootScope.showToast = function(message) {
-    console.log(message)
     $mdToast.show(
       $mdToast.simple()
       .content(message)
@@ -95,7 +94,7 @@ var app = angular.module('admin', ['ngSanitize', 'textAngular', ngFileUpload,
   }
 })
 
-.controller('ctrl', function($scope, $http, $state) {
+.controller('Ctrl', function($scope,$log, $http, $state) {
 
 
 })

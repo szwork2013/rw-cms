@@ -2,7 +2,7 @@ var angular = require('angular')
 var scss = require('./homepage.scss')
 
 module.exports = angular.module('homepage.controllers', [])
-  .controller('HomepageCtrl', function($scope,Homepage) {
+  .controller('HomepageCtrl', function($scope,$log,Homepage) {
     $scope.homepage = Homepage.get()
     $scope.update = function() {
       Homepage.update({
@@ -10,7 +10,7 @@ module.exports = angular.module('homepage.controllers', [])
       }, $scope.homepage, function(doc) {
         $scope.showToast(doc.message)
       }, function(err) {
-        console.log(err)
+        $log.log(err)
       })
     }
   })

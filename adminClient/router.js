@@ -24,9 +24,9 @@ for(var i in _templates) {
 
 function getTemplatePath(templateName, other) {
   if(other) {
-    return `./${templateName}/templates/${other}.html`
+    return './'+templateName+'/templates/'+other+'.html'
   } else {
-    return `./${templateName}/templates/${templateName}.html`
+    return './'+templateName+'/templates/'+templateName+'.html'
   }
 }
 

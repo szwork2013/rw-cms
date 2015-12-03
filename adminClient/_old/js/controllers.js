@@ -54,7 +54,7 @@ angular.module('admin.controllers', [])
         //$state.go('news.edit', {id: data._id})
         $state.go('category.articles',{id:$scope.article.category})
       },function(err){
-        console.log(err)
+        $log.log(err)
       })
     }
 

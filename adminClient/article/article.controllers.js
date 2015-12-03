@@ -6,7 +6,7 @@ require('angular-bootstrap-colorpicker/css/colorpicker.css')
 
 
 module.exports = angular.module('article.controllers', ['colorpicker.module'])
-  .controller('ArticleBaseCtrl', function($scope, $timeout, $state, Article, Category,
+  .controller('ArticleBaseCtrl', function($scope,$log, $timeout, $state, Article, Category,
     $window, $mdSidenav, Upload) {
     //显示隐藏选项菜单
     $scope.toogleSetting = function() {
@@ -45,12 +45,12 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     }
 
     $scope.searchTextChange = function(searchText) {
-      console.log(searchText)
+      $log.log(searchText)
       var result = searchText ? $scope.categorys.filter(function(category) {
         return category.name.indexOf(searchText) === 0
       }) : $scope.categorys
       $scope.items = result.length === 0 ? $scope.categorys : result
-      console.log($scope.items)
+        $log.log($scope.items)
     }
 
     $scope.selectedItemChange = function(item) {
@@ -88,7 +88,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
 
 
 //新建
-.controller('ArticleCreateCtrl', function($scope, $controller, $timeout, Upload,
+.controller('ArticleCreateCtrl', function($scope,$log, $controller, $timeout, Upload,
   $stateParams, Article, Category, $state, $window) {
   //继承
   angular.extend(this, $controller('ArticleBaseCtrl', {
@@ -130,7 +130,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
   $scope.create = function() {
     $scope.article.category = $scope.selectedItem._id
     $scope.article.$save(function(doc) {
-      console.log(doc)
+      $log.log(doc)
       $scope.showToast(doc.message)
       $state.go('home.article.edit',{id:doc._id})
     })
@@ -139,7 +139,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
 })
 
 //编辑
-.controller('ArticleEditCtrl', function($scope, $controller, $timeout, Upload,
+.controller('ArticleEditCtrl', function($scope,$log, $controller, $timeout, Upload,
   $stateParams, Article, Category, $state, $window) {
   //继承
   angular.extend(this, $controller('ArticleBaseCtrl', {
@@ -196,9 +196,10 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     Article.update({
       id: $scope.article._id
     }, $scope.article, function(doc) {
+      $log.log(doc)
       $scope.showToast(doc.message)
     }, function(err) {
-      console.log(err)
+      $log.log(err)
     })
   }
 })

@@ -2,20 +2,20 @@ var angular = require('angular')
 var style = require('./login.scss')
 
 module.exports = angular.module('login.controllers', [])
-  .controller('LoginCtrl', function($scope, $state, $cookies, Login, Const) {
+  .controller('LoginCtrl', function($scope,$log, $state, $cookies, Login, Const) {
     $scope.login = function() {
       Login.post($scope.author, function(res) {
         $scope.showToast(res.data.message)
       })
     }
   })
-  .controller('RegisterCtrl', function($scope, Author, $state) {
+  .controller('RegisterCtrl', function($scope,$log, Author, $state) {
     $scope.author = new Author()
     $scope.submit = function() {
       $scope.author.$save(function(data) {
         $state.go('login', {})
       }, function(err) {
-        console.log(err)
+        $log.log(err)
       })
     }
   })
