@@ -34,7 +34,7 @@ window.rangy.saveSelection = require('rangy/lib/rangy-selectionsaverestore')
 // require('./directives/textAngular/dist/textAngular.min.js')
 require('textangular/dist/textAngular-sanitize.min')
 require('textangular/dist/textAngular.css')
-var textAngular = require('textAngular')
+var textAngular = require('textangular')
 require('font-awesome/css/font-awesome.css')
 
 
