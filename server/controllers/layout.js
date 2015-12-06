@@ -32,8 +32,8 @@ layout.common = {
     layoutData.adminClient = obj.adminClient
     if(this.env == 'development') {
       layoutData.commonClient = {
-        css: 'commonClient.css',
-        js: 'commonClient.js'
+        css: '/commonClient.css',
+        js: '/commonClient.js'
       }
     }
     layoutData.env = this.env

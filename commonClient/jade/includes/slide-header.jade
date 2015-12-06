@@ -1,6 +1,15 @@
 // slide header @fullSize
 mixin slide-header(slideHeader)
-  section.slide-header(style='background-image:url('+slideHeader.bigImgUrl+')')
+  style.
+    .slide-header{
+      background-image:url(#{slideHeader.bigImgUrl})
+    }
+    @media (max-width: 1200px){
+      .slide-header{
+        background-image:url(#{slideHeader.smallImgUrl})
+      }
+    }
+  section.slide-header
     .wrap
       .title
         !{slideHeader.description}

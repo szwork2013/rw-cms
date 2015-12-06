@@ -20,7 +20,7 @@ var adminRouter = new Router({
 
 //普通路由
 var commonRouter = new Router({
-  prefix: '/'
+  prefix: ''
 })
 
 
