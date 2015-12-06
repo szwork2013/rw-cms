@@ -12,8 +12,15 @@ var send = require('koa-send')
 var path = require('path')
 var fs = require('fs')
 var router = new Router()
+
+//管理路由
 var adminRouter = new Router({
   prefix: '/admin'
+})
+
+//普通路由
+var commonRouter = new Router({
+  prefix: '/'
 })
 
 
@@ -99,10 +106,10 @@ adminRouter.post('/upload', function*(next) {
 
 
 //公开页面--------------------------------------------
-router.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
-router.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
-router.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
-router.get('/:slug', function*(next) {
+commonRouter.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
+commonRouter.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
+commonRouter.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
+commonRouter.get('/:slug', function*(next) {
   //控制slug 未被捕获的情况
   var Category = require('../models').Category
   var result = yield Category.find({
@@ -117,6 +124,7 @@ router.get('/:slug', function*(next) {
 }, layout.getAll, layout.common.get, category.common.render)
 
 
+router.use('', commonRouter.routes())
 router.use('', adminRouter.routes())
 
 module.exports = router

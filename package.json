@@ -5,9 +5,9 @@
   "scripts": {
     "client-dev": "webpack-dev-server --config webpack-dev.config.js --content-base-target http://localhost:3000 --hot --inline ",
     "client-production": "webpack --config webpack-production.config.js --progress --profile --colors",
-    "server-debug": "node --debug ./server/app.js",
-    "server-run": "node ./server/app.js",
-    "node-debug": "node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
+    "server-debug": "NODE_ENV=development node --debug ./server/app.js",
+    "server-run": "NODE_ENV=production node ./server/app.js",
+    "node-debug": "NODE_ENV=development node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
     "mongo-start": "mongod --auth"
   },
   "dependencies": {

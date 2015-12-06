@@ -1,8 +1,8 @@
 var koa = require('koa')
 var mongoose = require('mongoose')
 var views = require('koa-views')
-  // var static = require('koa-static')
-var static= require('koa-static-cache')
+var process = require('process')
+var static = require('koa-static-cache')
 var path = require('path')
 var bodyParser = require('koa-bodyparser')
 var qs = require('koa-qs')
@@ -15,7 +15,11 @@ var model = require('./models')
 var config = require('./config')
 
 //初始化
-var app = koa();
+var app = koa()
+app.use(function*(next) {
+  this.env = process.env.NODE_ENV
+  yield next
+})
 
 //登陆
 var session = require('koa-generic-session')

@@ -30,6 +30,14 @@ layout.common = {
     var obj = config.getLayoutStaticFile()
     layoutData.commonClient = obj.commonClient
     layoutData.adminClient = obj.adminClient
+    if(this.env == 'development') {
+      layoutData.commonClient = {
+        css: 'commonClient.css',
+        js: 'commonClient.js'
+      }
+    }
+    layoutData.env = this.env
+
     yield setCategoryObjToLayout(layoutData)
 
     this.state.layoutData = layoutData
