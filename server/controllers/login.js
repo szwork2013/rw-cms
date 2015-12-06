@@ -39,7 +39,7 @@ var login = {
     } else {
       //筛选出登陆页面,可进入下一中间件
       var u = this.request.originalUrl.split('/')
-      if(u[1] == 'login' || u[2] == 'login') {
+      if(u[1] == 'login' || u[2] == 'login' || u[1] =='dev' || u[2] =='dev') {
         yield next
       } else {
         this.response.status = 401

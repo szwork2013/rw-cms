@@ -6,6 +6,7 @@ var login = require('./login')
 var home = require('./home')
 var about = require('./about')
 var layout = require('./layout')
+var config = require('../config')
 var send = require('koa-send')
 
 var path = require('path')
@@ -17,14 +18,12 @@ var adminRouter = new Router({
 
 
 adminRouter.get('/', function*(next) {
-  var config = require('../config')
   yield send(this, path.resolve(config.staticPaths[0], config.getLayoutStaticFile().adminClient
     .html))
 })
 
 adminRouter.get('/dev', function*(next) {
-  var config = require('../config')
-  yield send(this, path.resolve(config.staticPaths[0], './adminIndex-dev.html'))
+  yield send(this, config.staticPaths[0]+ '/adminIndex-dev.html')
 })
 
 
