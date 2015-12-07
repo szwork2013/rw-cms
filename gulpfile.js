@@ -102,7 +102,6 @@ gulp.task('deploy', function() {
     yield rmdir('rw-cms/public/dist')
 
     if(argv.clean) {
-      var num = 0
       var baseDir = 'rw-cms/'
       var cleanDir = ['public/fonts',
         'public/js',
@@ -115,15 +114,12 @@ gulp.task('deploy', function() {
         'public/adminIndex-dev.html'
       ]
       for(var i in cleanDir) {
-        gutil.log(num++)
         yield rmdir(baseDir + cleanDir[i])
       }
       for(var j in cleanFile) {
-        gutil.log(num++)
         yield rm(baseDir + cleanFile[j])
       }
     }
-    gutil.log(num++)
 
     yield gulp.src(globs, {
         base: '.',
