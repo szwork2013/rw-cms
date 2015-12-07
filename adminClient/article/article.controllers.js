@@ -6,8 +6,21 @@ require('angular-bootstrap-colorpicker/css/colorpicker.css')
 
 
 module.exports = angular.module('article.controllers', ['colorpicker.module'])
-  .controller('ArticleBaseCtrl', function($scope,$log, $timeout, $state, Article, Category,
-    $window, $mdSidenav, Upload) {
+  .controller('ArticleBaseCtrl', function($scope, $log, $timeout, $state, Article,
+    Category, $window, $mdSidenav, Upload) {
+
+    $scope.init = function() {
+      $scope.article = new Article()
+      $scope.article.content = ''
+      $scope.article.tags = []
+      $scope.article.relationArticle = []
+      $scope.article.category = $state.params.category ? $state.params.category._id :
+        null
+      $scope.selectedItem = $state.params.category
+    }
+    $scope.init()
+
+
     //显示隐藏选项菜单
     $scope.toogleSetting = function() {
       $mdSidenav('setting').toggle()
@@ -50,7 +63,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
         return category.name.indexOf(searchText) === 0
       }) : $scope.categorys
       $scope.items = result.length === 0 ? $scope.categorys : result
-        $log.log($scope.items)
+      $log.log($scope.items)
     }
 
     $scope.selectedItemChange = function(item) {
@@ -78,7 +91,6 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     }
 
 
-    //提交
 
 
     $scope.cancel = function() {
@@ -88,7 +100,7 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
 
 
 //新建
-.controller('ArticleCreateCtrl', function($scope,$log, $controller, $timeout, Upload,
+.controller('ArticleCreateCtrl', function($scope, $log, $controller, $timeout, Upload,
   $stateParams, Article, Category, $state, $window) {
   //继承
   angular.extend(this, $controller('ArticleBaseCtrl', {
@@ -96,16 +108,8 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
   }))
 
   //初始化
-  $scope.init = function() {
-    $scope.publishButtonText = '发布'
-    $scope.article = new Article()
-    $scope.article.content = ''
-    $scope.article.tags = []
-    $scope.article.relationArticle = []
-    $scope.article.category = $state.params.category === null ? null : $state.params
-      .category._id
-    $scope.selectedItem = $state.params.category
-
+  $scope.publishButtonText = '发布'
+  $scope.boundCategory = function() {
     //拿出分类及填充combobox
     Category.query(function(categorys) {
       $scope.categorys = _.toArray(categorys)
@@ -125,37 +129,62 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
     })
   }
 
-  $scope.init()
+  $scope.boundCategory()
 
   $scope.create = function() {
     $scope.article.category = $scope.selectedItem._id
     $scope.article.$save(function(doc) {
       $log.log(doc)
       $scope.showToast(doc.message)
-      $state.go('home.article.edit',{id:doc._id})
+      $state.go('home.article.edit', {
+        id: doc._id
+      })
     })
   }
 
 })
 
 //编辑
-.controller('ArticleEditCtrl', function($scope,$log, $controller, $timeout, Upload,
+.controller('ArticleEditCtrl', function($scope, $log, $controller, $timeout, Upload,
   $stateParams, Article, Category, $state, $window) {
   //继承
   angular.extend(this, $controller('ArticleBaseCtrl', {
     $scope: $scope
   }))
 
-  $scope.init = function() {
+  $scope.boundCategory = function() {
     $scope.publishButtonText = "更新"
 
+    //获取category
     Category.query(function(categorys) {
-
       //绑定分类
       $scope.categorys = _.toArray(categorys)
         //绑定文章
       Article.query(function(articles) {
+        //获取所有文章
         $scope.articles = _.toArray(articles)
+
+
+        //获取 article
+        $scope.article = Article.get({
+          id: $stateParams.id
+        }, function() {
+          $scope.article.publishDate = new Date($scope.article.publishDate)
+            //查找类别combox初始项
+          $scope.selectedItem = _.find($scope.categorys, function(
+              category) {
+              return category._id == $scope.article.category
+            })
+            //check关联文章
+          $scope.article.relationArticle.forEach(function(_id) {
+            var checkItem = _.find($scope.articles, function(
+              n) {
+              return n._id == _id
+            })
+            if(checkItem != undefined)
+              checkItem.checked = true
+          })
+        })
 
         //绑定类别及关联文章
         $scope.categorys.forEach(function(category) {
@@ -165,30 +194,11 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
           })
           category.categoryArticles = _.isArray(categoryArticles) ?
             categoryArticles : [categoryArticles]
-
-          $scope.article = Article.get({
-            id: $stateParams.id
-          }, function() {
-            //查找类别combox初始项
-            $scope.selectedItem = _.find($scope.categorys, function(
-                category) {
-                return category._id == $scope.article.category
-              })
-              //check关联文章
-            $scope.article.relationArticle.forEach(function(_id) {
-              var checkItem = _.find($scope.articles, function(
-                n) {
-                return n._id == _id
-              })
-              if(checkItem != undefined)
-                checkItem.checked = true
-            })
-          })
         })
       })
     })
   }
-  $scope.init()
+  $scope.boundCategory()
 
 
   $scope.create = function() {

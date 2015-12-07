@@ -13,10 +13,12 @@ button, select, html, textarea, input {
 }
 
 .self-index-slidenav{
+
   background-color:$mainBgc;
   // max-width:250px !important;
   // width:250px !important;
   // min-width:0 !important;
+  height: 100%;
   .md-subheader{
     background-color: transparent;
   }
@@ -25,10 +27,13 @@ button, select, html, textarea, input {
     border-radius: 0 !important;
   }
 
-  .self-bottom-toolBar{
+  .self-index-md-list {
+    height: 90%;
+    overflow-y: auto;
+  }
 
-    position:fixed;
-    bottom:0;
+
+  .self-bottom-toolBar{
     background-color: transparent;
     color:rgba(0, 0, 0, 0.870588);
 
