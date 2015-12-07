@@ -221,6 +221,8 @@ nav {
 
 //area 5
 .area-5 {
+  //解决ie下 下方留白
+  overflow: hidden;
   background-color: $mainBgc;
   color: $mainFontColor;
 

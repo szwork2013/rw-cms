@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "client-dev": "webpack-dev-server --config webpack-dev.config.js --content-base-target http://localhost:3000 --hot --inline ",
+    "client-dev": "webpack-dev-server --config webpack-dev.config.js --content-base-target http://localhost:3000 --hot --inline  --host 0.0.0.0 --port 8080",
     "client-production": "webpack --config webpack-production.config.js --progress --profile --colors",
     "server-debug": "NODE_ENV=development node --debug ./server/app.js",
     "server-run": "NODE_ENV=production node ./server/app.js",

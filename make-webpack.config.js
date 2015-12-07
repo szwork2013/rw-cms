@@ -16,9 +16,16 @@ module.exports = function(opt) {
     commonClient: [path.join(commomClientPath, './app.js')]
   }
 
-  if(opt.devServer) {
-    entry.adminClient.unshift(opt.devServer)
-    entry.commonClient.unshift(opt.devServer)
+  if(opt.devServerScript) {
+    entry.adminClient.unshift(opt.devServerScript)
+    entry.commonClient.unshift(opt.devServerScript)
+  }
+
+  /**
+   * dev server
+   */
+  if(opt.devServer){
+    config.devServer = opt.devServer
   }
 
   /**
