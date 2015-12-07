@@ -10,6 +10,9 @@ var Clean = require('clean-webpack-plugin')
 
 var makeConfig = require('./make-webpack.config')
 
+/**
+ * ServerConfigReplace
+ */
 function ServerConfigReplace(path) {
   this.path = path
 }
