@@ -6,6 +6,12 @@ html
     title #{layoutData.htmlTitle}
     if (layoutData.env!=='development')
       link(rel='stylesheet', href=layoutData.commonClient.css)
+      
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv-printshiv.min.js"></script>
+    <script src="/js/respond.matchmedia.addListener.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
   body
     block main
     if (layoutData.env==='development')
