@@ -13,6 +13,9 @@ var secretConfig = require('./server/secretConfig')
 
 var dir = './adminClient/'
 
+/**
+ * 观察html
+ */
 gulp.task('html', function() {
   gulp.src(dir + '**/*.html')
     .pipe(livereload());
@@ -28,6 +31,9 @@ gulp.task('watch', function() {
   livereload.listen();
 })
 
+/**
+ * webpack-dev-server(弃用)
+ */
 gulp.task("webpack-dev-server", function(callback) {
   // modify some webpack config options
   var myConfig = Object.create(webpackConfig);
@@ -58,7 +64,9 @@ gulp.task('serve', function() {
   gulp.run('watch')
 })
 
-//向服务器自动部署
+/**
+ * 向服务器自动部署
+ */
 gulp.task('deploy', function() {
 
   var conn = ftp.create({
