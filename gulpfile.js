@@ -87,17 +87,18 @@ gulp.task('deploy', function() {
   // turn off buffering in gulp.src for best performance
 
   co(function*() {
-    var creatfn = function(fn) {
+    var creatfn = function(obj, fn) {
+      var bfn = fn.bind(obj)
       return function(path) {
         return new Promise(function(resolve) {
-          fn.call(conn,path, function(err) {
+          bfn(path, function(err) {
             resolve(err)
           })
         })
       }
     }
-    var rmdir = creatfn(conn.rmdir)
-    var rm = creatfn(conn.delete)
+    var rmdir = creatfn(conn,conn.rmdir)
+    var rm = creatfn(conn,conn.delete)
 
     yield rmdir('rw-cms/public/dist')
 
