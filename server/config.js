@@ -3,6 +3,7 @@ var secretConfig = require('./secretConfig')
 var fs = require('fs')
 
 module.exports = {
+  devMongoStr: `mongodb://${secretConfig.mongo.name}:${secretConfig.mongo.password}@localhost/Koa-Cms-Dev`,
   mongoStr: `mongodb://${secretConfig.mongo.name}:${secretConfig.mongo.password}@localhost/Koa-Cms`,
 
   //public,admin

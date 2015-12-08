@@ -6,7 +6,32 @@ if(!document.addEventListener) {
   /**
    * ie8 fallback
    */
-  // $('.area-title').css('top', '-40px')
+  $('.slide-header .title').css({
+    top: '-30%',
+    left: '-35%'
+  })
+
+  $('.slide-header .content-img').css({
+    top: '-50%',
+    right: '55%'
+  })
+
+  $('.area-title h3:first-child,.area-title h2:first-child').css({
+    'padding-top': '50px'
+  })
+
+  $('.area-title').css({
+    'margin-bottom': '50px'
+  })
+
+  $('.area').css({
+    'padding-top': '20px'
+  })
+
+  $('.area-5 .description').css({
+    top: '0%',
+    left: '20%'
+  })
 }
 
 

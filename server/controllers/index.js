@@ -30,7 +30,9 @@ adminRouter.get('/', function*(next) {
 })
 
 adminRouter.get('/dev', function*(next) {
-  yield send(this, config.staticPaths[0]+ '/adminIndex-dev.html')
+  if(this.env == 'development') {
+    yield send(this, config.staticPaths[0] + '/adminIndex-dev.html')
+  }
 })
 
 

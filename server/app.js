@@ -44,8 +44,14 @@ app.use(multer({
 }))
 
 //链接数据库
-mongoose.connect(config.mongoStr)
-  //初始化模板引擎
+if(app.env === 'development') {
+  mongoose.connect(config.devMongoStr)
+}else{
+  mongoose.connect(config.mongoStr)
+}
+
+
+//初始化模板引擎
 app.use(views('../commonClient/jade', {
   default: 'jade',
   map: {
