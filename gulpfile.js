@@ -4,6 +4,7 @@ var livereload = require('gulp-livereload');
 var gutil = require('gulp-util')
 var argv = require('yargs').argv;
 var ftp = require('vinyl-ftp')
+var Client = require('ssh2').Client
 var co = require('co')
 var webpack = require('webpack')
 var WebpackDevServer = require('webpack-dev-server')
@@ -105,8 +106,8 @@ gulp.task('deploy', function() {
         })
       }
     }
-    var rmdir = creatfn(conn,conn.rmdir)
-    var rm = creatfn(conn,conn.delete)
+    var rmdir = creatfn(conn, conn.rmdir)
+    var rm = creatfn(conn, conn.delete)
 
     yield rmdir('rw-cms/public/dist')
 
@@ -136,10 +137,33 @@ gulp.task('deploy', function() {
       })
       .pipe(conn.newer('rw-cms')) // only upload newer files
       .pipe(conn.dest('rw-cms'))
-
   })
-
 })
+
+gulp.task('ssh', function() {
+  var conn = new Client()
+  conn.on('ready', function() {
+    conn.exec('pm2 restart app', function(err, stream) {
+      if(err) throw err
+      stream.on('close', function(code, signal) {
+        console.log('Stream :: close :: code: ' + code +
+          ', signal: ' +
+          signal)
+        conn.end()
+      }).on('data', function(data) {
+        console.log('STDOUT: ' + data)
+      }).stderr.on('data', function(data) {
+        console.log('STDERR: ' + data)
+      })
+    })
+  }).connect({
+    host: secretConfig.ssh.host,
+    port: 22,
+    username: secretConfig.ssh.user,
+    password: secretConfig.ssh.password
+  })
+})
+
 
 //default
 gulp.task('default', ['serve'])
