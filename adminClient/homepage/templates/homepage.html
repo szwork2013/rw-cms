@@ -25,6 +25,42 @@
     <input ng-model="homepage.midBanner.en">
   </md-input-container>
 
+  <h3>区域 1</h3>
+  <md-autocomplete md-floating-label="分类" md-item-text="item.name" md-items="item in items1"
+    md-search-text-change="searchTextChange1(searchText1)" md-search-text="searchText1"
+    md-selected-item-change="selectedItemChange1(item)" md-selected-item="selectedItem1">
+    <md-item-template>
+      <span md-highlight-flags="^i" md-highlight-text="searchText">{{item.name}}</span>
+    </md-item-template>
+    <md-not-found>
+      无内容
+    </md-not-found>
+  </md-autocomplete>
+
+  <h3>区域 2</h3>
+  <md-autocomplete md-floating-label="分类" md-item-text="item.name" md-items="item in items2"
+    md-search-text-change="searchTextChange2(searchText2)" md-search-text="searchText2"
+    md-selected-item-change="selectedItemChange2(item)" md-selected-item="selectedItem2">
+    <md-item-template>
+      <span md-highlight-flags="^i" md-highlight-text="searchText">{{item.name}}</span>
+    </md-item-template>
+    <md-not-found>
+      无内容
+    </md-not-found>
+  </md-autocomplete>
+
+  <h3>区域 3</h3>
+  <md-autocomplete md-floating-label="分类" md-item-text="item.name" md-items="item in items3"
+    md-search-text-change="searchTextChange3(searchText3)" md-search-text="searchText3"
+    md-selected-item-change="selectedItemChange3(item)" md-selected-item="selectedItem3">
+    <md-item-template>
+      <span md-highlight-flags="^i" md-highlight-text="searchText">{{item.name}}</span>
+    </md-item-template>
+    <md-not-found>
+      无内容
+    </md-not-found>
+  </md-autocomplete>
+
   <h3>关于</h3>
   <md-input-container>
     <label>中文标题</label>

@@ -16,7 +16,7 @@ block content
     // area grid
     .area-grid
       .row
-        -each article in serviceData
+        -each article in area1Data
           .col
             a.card(href='/article/'+article.slug)
               .content-wrap(style='background:'+article.background)
@@ -44,7 +44,7 @@ block content
     // area grid
     .area-grid
       .row
-        -each article in caseData
+        -each article in area2Data
           a(href='/article/'+article.slug)
             .col
               .imgcard(style='background:'+article.background)
@@ -59,7 +59,7 @@ block content
     // area grid
     .area-grid
       .row
-        -each article in newsData
+        -each article in area3Data
           .col
             a.card(href='/article/'+article.slug)
               .content-wrap(style='background:'+article.background)

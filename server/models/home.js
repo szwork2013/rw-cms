@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var ObjectId = Schema.ObjectId
 
 //主页配置
 var HomeSchema = new Schema({
@@ -20,6 +21,21 @@ var HomeSchema = new Schema({
     },
     en: {
       type: String
+    }
+  },
+  area1: {
+    category: {
+      type: ObjectId
+    }
+  },
+  area2: {
+    category: {
+      type: ObjectId
+    }
+  },
+  area3: {
+    category: {
+      type: ObjectId
     }
   },
   about: {

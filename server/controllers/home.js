@@ -19,33 +19,30 @@ home.common = {
     yield next
 
     yield this.render('index', {
-      serviceData: this.state.serviceData,
-      newsData:this.state.newsData,
-      caseData:this.state.caseData,
+      area1Data: this.state.area1Data,
+      area2Data: this.state.area2Data,
+      area3Data: this.state.area3Data,
       layoutData: this.state.layoutData,
       homeData: this.state.homeData
     })
   },
 
   getData: function*(next) {
-    var serviceDataCategory = yield Category.findOne({
-      name: '服务与方案'
-    }).exec()
-    this.state.serviceData = yield Article.find({
-      category: serviceDataCategory._id
-    }).exec()
-    var newsCategory = yield Category.findOne({
-      name: '瑞高资讯'
-    }).exec()
-    this.state.newsData = yield Article.find({
-      category: newsCategory._id
-    }).exec()
-    var caseCategory = yield Category.findOne({
-      name: '项目案例'
-    }).exec()
-    this.state.caseData = yield Article.find({
-      category: caseCategory._id
-    }).exec()
+    var resultList = yield [
+      Article.find({
+        category: this.state.homeData.area1.category
+      }).exec(),
+      Article.find({
+        category: this.state.homeData.area2.category
+      }).exec(),
+      Article.find({
+        category: this.state.homeData.area3.category
+      }).exec()
+    ]
+    this.state.area1Data = resultList[0]
+    this.state.area2Data = resultList[1]
+    this.state.area3Data = resultList[2]
+
     yield next
   }
 }
