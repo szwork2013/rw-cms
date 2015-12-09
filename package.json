@@ -8,7 +8,8 @@
     "server-debug": "NODE_ENV=development node --debug ./server/app.js",
     "server-run": "NODE_ENV=production node ./server/app.js",
     "node-debug": "NODE_ENV=development node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
-    "mongo-start": "mongod --auth"
+    "mongo-start": "mongod --auth",
+    "pm2":"NODE_ENV=production pm2 start ./server/app.js"
   },
   "dependencies": {
     "co": "^4.6.0",

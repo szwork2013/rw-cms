@@ -17,7 +17,7 @@ category.getCategoryArticles = function*(next) {
   this.state.docs = [yield Article.find({
       category: this.params.categoryId
     }, keys[0] + ' ' + keys[1], {
-      limit: pageAgr.singleNum,
+      limit: parseInt(pageAgr.singleNum),
       skip: range[0]
     }).sort({createDate:-1}).exec(),
     yield Article.find({

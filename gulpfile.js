@@ -89,7 +89,8 @@ gulp.task('deploy', function() {
 
     //服务器端
     'server/**/*',
-    'commonClient/jade/**/*'
+    'commonClient/jade/**/*',
+    'package.json'
   ]
 
   // using base = '.' will transfer everything to /public_html correctly
@@ -121,7 +122,8 @@ gulp.task('deploy', function() {
       var cleanFile = [
         'public/adminIndex.html',
         'public/favicon.ico',
-        'public/adminIndex-dev.html'
+        'public/adminIndex-dev.html',
+        'package.json'
       ]
       for(var i in cleanDir) {
         yield rmdir(baseDir + cleanDir[i])
