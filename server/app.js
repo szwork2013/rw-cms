@@ -44,11 +44,11 @@ app.use(multer({
 }))
 
 //链接数据库
-if(app.env === 'development') {
-  mongoose.connect(config.devMongoStr)
-}else{
+// if(app.env === 'development') {
+  // mongoose.connect(config.devMongoStr)
+// }else{
   mongoose.connect(config.mongoStr)
-}
+// }
 
 
 //初始化模板引擎

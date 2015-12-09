@@ -118,7 +118,6 @@ commonRouter.get('/:slug', function*(next) {
     slug: this.params.slug
   }).exec()
   if(result && result.length !== 0) {
-    console.log(result)
     yield next
   } else {
     this.response.status = 404

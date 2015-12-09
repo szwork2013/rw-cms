@@ -99,7 +99,6 @@ ArticleSchema.set('toObject', {
 ArticleSchema.post('save', function(doc) {
   if(doc.slug === undefined || doc.slug === ''){
     doc.slug = doc._id.toString()
-    console.log(doc)
     doc.save()
   }
 })

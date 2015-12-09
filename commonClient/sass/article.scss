@@ -2,8 +2,24 @@
   background-color: $mainColor;
   color: $subFontColor;
 
-  p {
-    margin-top: 20px;
-    line-height: 2;
+  .area-content {
+    p {
+      margin-top: 20px;
+      line-height: 2;
+    }
   }
+
+  .area-title{
+    margin-bottom: 50px;
+  }
+
+  .area-content .description{
+      max-width:920px;
+  }
+
+
+}
+
+.article.area-2{
+  background-color: #F7F7F7;
 }
