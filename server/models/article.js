@@ -55,11 +55,11 @@ var ArticleSchema = new Schema({
   relationArticle: {
     type: [ObjectId]
   },
-  backgroundColor:{
-    type:String
+  backgroundColor: {
+    type: String
   },
-  backgroundImage:{
-    type:String
+  backgroundImage: {
+    type: String
   },
   publishDate: {
     type: Date,
@@ -86,6 +86,12 @@ titleVir.set(function(val) {
   return this.titles.default = val
 })
 
+var backgroundVir = ArticleSchema.virtual('background')
+
+backgroundVir.get(function() {
+  return this.backgroundImage ? 'url(' + this.backgroundImage + ')' : this.backgroundColor
+})
+
 ArticleSchema.set('toJSON', {
   getters: true,
   virtuals: true
@@ -97,7 +103,7 @@ ArticleSchema.set('toObject', {
 
 
 ArticleSchema.post('save', function(doc) {
-  if(doc.slug === undefined || doc.slug === ''){
+  if(doc.slug === undefined || doc.slug === '') {
     doc.slug = doc._id.toString()
     doc.save()
   }

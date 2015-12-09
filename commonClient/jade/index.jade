@@ -16,7 +16,7 @@ block content
     // area grid
     .area-grid
       .row
-        -each article in articles
+        -each article in serviceData
           .col
             a.card(href='/article/'+article.slug)
               .content-wrap(style='background:'+article.background)
@@ -44,9 +44,10 @@ block content
     // area grid
     .area-grid
       .row
-        -for(var i=0;i<6;i++)
-          .col
-            .imgcard
+        -each article in caseData
+          a(href='/article/'+article.slug)
+            .col
+              .imgcard(style='background:'+article.background)
     // line bar
     .line-bar
   // area 3:瑞高资讯
@@ -58,13 +59,13 @@ block content
     // area grid
     .area-grid
       .row
-        -for(var i=0;i<6;i++)
+        -each article in newsData
           .col
-            a.card
-              .content-wrap
+            a.card(href='/article/'+article.slug)
+              .content-wrap(style='background:'+article.background)
               .card-description
-                p 新闻标题
-                  p 新闻简介
+                p #{article.title}
+                  p #{article.description}
 
   // area 4:关于瑞高
   section.area.area-4#area-4

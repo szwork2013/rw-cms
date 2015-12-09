@@ -108,7 +108,7 @@ adminRouter.post('/upload', function*(next) {
 
 
 //公开页面--------------------------------------------
-commonRouter.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render)
+commonRouter.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render,home.common.getData)
 commonRouter.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
 commonRouter.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
 commonRouter.get('/:slug', function*(next) {
