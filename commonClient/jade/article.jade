@@ -9,8 +9,8 @@ block content
 
   .article.area.area-1
     .area-title
-      h3 #{articleData.titles.enLong}
-      h3 #{articleData.titles.zhLong}
+      h3 #{articleData.titles.enLong||articleData.titles.en}
+      h3 #{articleData.titles.zhLong||articleData.titles.default}
     .area-content
       .description
         !{articleData.content}

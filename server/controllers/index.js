@@ -111,18 +111,7 @@ adminRouter.post('/upload', function*(next) {
 commonRouter.get('/', layout.getAll, layout.common.get, home.getAll, home.common.render,home.common.getData)
 commonRouter.get('/about', layout.getAll, layout.common.get, about.getAll, about.common.render)
 commonRouter.get('/article/:slug', layout.getAll, layout.common.get, article.common.render)
-commonRouter.get('/:slug', function*(next) {
-  //控制slug 未被捕获的情况
-  var Category = require('../models').Category
-  var result = yield Category.find({
-    slug: this.params.slug
-  }).exec()
-  if(result && result.length !== 0) {
-    yield next
-  } else {
-    this.response.status = 404
-  }
-}, layout.getAll, layout.common.get, category.common.render)
+commonRouter.get('/category/:slug',layout.getAll, layout.common.get, category.common.render)
 
 
 router.use('', commonRouter.routes())

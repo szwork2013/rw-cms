@@ -45,9 +45,9 @@ block content
     .area-grid
       .row
         -each article in area2Data
-          a(href='/article/'+article.slug)
             .col
-              .imgcard(style='background:'+article.background)
+              a(href='/article/'+article.slug)
+                .imgcard(style='background:'+article.background)
     // line bar
     .line-bar
   // area 3:瑞高资讯

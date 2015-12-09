@@ -32,8 +32,8 @@ module.exports = angular.module('article.controllers', ['colorpicker.module'])
         $timeout(function() {
           file.result = response.data;
           $scope.uploadImgPath = '/upload/img/' + file.result.name
-          $scope.article.content += '<img src="' + $scope.uploadImgPath +
-            '" />'
+          $scope.article.content += '<p><img style="width:100%" src="' + $scope.uploadImgPath +
+            '" /></p>'
         })
       }, function(response) {
         if(response.status > 0)
