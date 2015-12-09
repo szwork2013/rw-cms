@@ -2,6 +2,10 @@
   @include outer-container($media-lg);
   margin: 20px auto;
 
+  a:link,a:visited{
+    color:#000;
+  }
+
   .wrap {
     margin-left: 10px;
     margin-right: 10px;
