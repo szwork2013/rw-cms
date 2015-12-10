@@ -137,8 +137,8 @@ gulp.task('deploy', function() {
         base: '.',
         buffer: false
       })
-      .pipe(conn.newer('rw-cms')) // only upload newer files
-      .pipe(conn.dest('rw-cms'))
+      .pipe(conn.newer('/home/tiantianquan/rw-cms')) // only upload newer files
+      .pipe(conn.dest('/home/tiantianquan/rw-cms'))
   })
 })
 
