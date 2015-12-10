@@ -2,8 +2,8 @@ var koa = require('koa')
 var mongoose = require('mongoose')
 var views = require('koa-views')
 var process = require('process')
-var static = require('koa-static')
-  // var static = require('koa-static-cache')
+  // var static = require('koa-static')
+var staticCache = require('koa-static-cache')
 var path = require('path')
 var bodyParser = require('koa-bodyparser')
 var qs = require('koa-qs')
@@ -34,10 +34,16 @@ app.keys = require('./secretConfig').appKeys
 qs(app)
 
 //静态资源
+// config.staticPaths.forEach(function(staticPath) {
+//   app.use(static(staticPath, {
+//     // maxage: 60 * 60 * 24 * 365,
+//     index: 'aa'
+//   }))
+// })
 config.staticPaths.forEach(function(staticPath) {
-  app.use(static(staticPath, {
-    // maxage: 60 * 60 * 24 * 365,
-    index: 'aa'
+  app.use(staticCache(staticPath, {
+    maxage: 60 * 60 * 24 * 365,
+    dynamic: true,
   }))
 })
 
@@ -47,7 +53,8 @@ app.use(multer({
   dest: config.staticPaths[0] + '/upload/img/',
   rename: function(fieldname, filename, req, res) {
     var random_string = fieldname + filename + Date.now() + Math.random();
-    return filename +'.'+crypto.createHash('md5').update(random_string).digest('hex');
+    return filename + '.' + crypto.createHash('md5').update(random_string).digest(
+      'hex');
   }
 }))
 
