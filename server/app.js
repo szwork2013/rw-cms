@@ -44,6 +44,7 @@ config.staticPaths.forEach(function(staticPath) {
   app.use(staticCache(staticPath, {
     maxage: 60 * 60 * 24 * 365,
     dynamic: true,
+    gzip:true
   }))
 })
 
