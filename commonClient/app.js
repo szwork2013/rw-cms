@@ -40,4 +40,8 @@ $(document).ready(function() {
   $('.burger-btn').click(function() {
     headerNav.toggle(500)
   })
+
+  $.get('http://127.0.0.1:8080',function(res){
+    console.log(res)
+  })
 })

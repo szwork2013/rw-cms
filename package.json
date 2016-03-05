@@ -9,7 +9,7 @@
     "server-run": "NODE_ENV=production node ./server/app.js",
     "node-debug": "NODE_ENV=development node-debug --web-port 8090 --save-live-edit true  ./server/app.js",
     "mongo-start": "mongod --auth",
-    "pm2":"NODE_ENV=production pm2 start ./server/app.js"
+    "pm2": "NODE_ENV=production pm2 start ./server/app.js"
   },
   "dependencies": {
     "co": "^4.6.0",
@@ -17,6 +17,7 @@
     "jade": "^1.11.0",
     "koa": "^1.1.2",
     "koa-bodyparser": "^2.0.1",
+    "koa-cors": "0.0.16",
     "koa-generic-session": "^1.10.0",
     "koa-gzip": "^0.1.0",
     "koa-jade": "^2.0.1",
